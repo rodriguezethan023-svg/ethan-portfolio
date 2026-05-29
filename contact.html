@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact // Ethan Rodriguez</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --accent: #007AFF; 
+            --accent-glow: rgba(0, 122, 255, 0.4);
+            --text-main: #FFFFFF;
+            --text-muted: #888888;
+            --font-head: 'Outfit', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-head);
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%);
+            pointer-events: none; z-index: -1;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        #cursor {
+            position: fixed; width: 8px; height: 8px; background: #fff;
+            border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s;
+        }
+        #cursor-follower {
+            position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent);
+            border-radius: 50%; pointer-events: none; z-index: 10000;
+            transition: transform 0.2s ease-out, background 0.3s;
+        }
+
+        /* --- NAVIGATION --- */
+        .nav {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+        }
+        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-muted); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        /* --- CONTACT HERO --- */
+        .contact-hero {
+            height: 50vh; display: flex; flex-direction: column; justify-content: center;
+            padding: 0 10%; border-bottom: 1px solid var(--border); position: relative;
+        }
+        .hero-tag { font-family: var(--font-mono); color: var(--accent); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .hero-title {
+            font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 900;
+            text-transform: uppercase; letter-spacing: -4px; line-height: 0.9;
+        }
+        .hero-title span { color: transparent; -webkit-text-stroke: 1.5px white; }
+
+        /* --- CONTACT INTERFACE --- */
+        .interface {
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem;
+            padding: 100px 10%; align-items: start;
+        }
+
+        .contact-message h2 { font-size: 3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 2rem; line-height: 1.1; }
+        .contact-message p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 3rem; max-width: 600px; }
+
+        /* Availability Badge */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 24px; background: rgba(0, 122, 255, 0.05);
+            border: 1px solid var(--accent); border-radius: 100px;
+            font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+        .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+        
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        /* Contact Links */
+        .contact-methods { display: flex; flex-direction: column; gap: 40px; }
+        
+        .method-item { text-decoration: none; color: white; display: block; border-bottom: 1px solid var(--border); padding-bottom: 30px; transition: var(--transition); }
+        .method-item:hover { border-color: var(--accent); padding-left: 15px; }
+        .method-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
+        .method-value { font-size: 1.8rem; font-weight: 700; word-break: break-all; }
+
+        /* --- VISUAL SPLIT --- */
+        .visual-split {
+            display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem;
+            padding: 100px 10% 150px; background: #080808; border-top: 1px solid var(--border);
+        }
+        .contact-photo {
+            width: 100%; border-radius: 20px; border: 1px solid var(--border);
+            overflow: hidden; aspect-ratio: 4/5; position: relative;
+        }
+        .contact-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 1s var(--transition); }
+        .contact-photo:hover img { filter: grayscale(0); transform: scale(1.05); }
+
+        .social-card {
+            background: #0a0a0a; border: 1px solid var(--border); padding: 40px;
+            border-radius: 20px; text-decoration: none; color: white; transition: var(--transition);
+            display: inline-block; width: 100%; margin-top: 30px;
+        }
+        .social-card:hover { border-color: var(--accent); transform: translateY(-5px); background: #0d0d0d; box-shadow: 0 10px 30px var(--accent-glow); }
+        .social-card h4 { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+        .social-card p { font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+
+        /* --- CLOSING STATEMENT --- */
+        .closing-area { 
+            padding: 100px 10%; 
+            text-align: center; 
+            border-top: 1px solid var(--border); 
+            background: var(--bg);
+        }
+        .closing-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            padding: 3rem 10%; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; font-family: var(--font-mono);
+            font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .interface, .visual-split { grid-template-columns: 1fr; }
+            .hero-title { font-size: 4rem; }
+            .method-value { font-size: 1.4rem; }
+            .contact-hero, .interface, .visual-split { padding: 80px 5%; }
+            .closing-area { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#work">Portfolio</a></li>
+            <li><a href="contact.html" class="active">Connect</a></li>
+        </ul>
+    </nav>
+
+    <header class="contact-hero">
+        <span class="hero-tag">Say Hello</span>
+        <h1 class="hero-title">Ready to Bring<br><span>Your Ideas to Life?</span></h1>
+    </header>
+
+    <!-- MAIN CONTACT INTERFACE -->
+    <section class="interface">
+        <div class="contact-message">
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                Available for Work // 2026
+            </div>
+            <h2 style="margin-top: 30px;">Let's Create Something Great.</h2>
+            <p>
+                I'm always open to connecting with creative teams, businesses, and individuals who need help bringing their ideas to life. Whether it's branding, marketing materials, content creation, or design support, I'd love to hear about what you're working on.
+            </p>
+        </div>
+
+        <div class="contact-methods">
+            <a href="mailto:rodriguezethan023@gmail.com" class="method-item">
+                <span class="method-label">Email Me</span>
+                <span class="method-value">rodriguezethan023@gmail.com</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/ethan-rodriguez-1aa4a3222" target="_blank" class="social-card" style="margin-top: 0;">
+                <h4>Professional Profile</h4>
+                <p>Visit my LinkedIn →</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- CONNECT SECTION -->
+    <section class="visual-split">
+        <div class="contact-photo">
+            <img src="https://i.ibb.co/SXngYRzn/image0.png" alt="Ethan Rodriguez">
+        </div>
+        <div style="align-self: center;">
+            <span class="hero-tag">Connect With Me</span>
+            <h2>Professional Updates.</h2>
+            <p style="color: var(--text-muted); margin-top: 20px; font-size: 1.1rem; line-height: 1.8;">
+                You can find me on LinkedIn for professional updates, project highlights, and career opportunities. I'm always happy to chat about design, sports, or potential collaborations.
+            </p>
+            <a href="https://www.linkedin.com/in/ethan-rodriguez-1aa4a3222" target="_blank" class="social-card">
+                <h4>LinkedIn</h4>
+                <p>@ethan-rodriguez</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- NATURAL PAGE ENDING -->
+    <section class="closing-area">
+        <p class="closing-text">Thanks for stopping by.</p>
+    </section>
+
+    <footer class="footer">
+        <div>© 2026 Ethan Rodriguez // TX</div>
+        <div>San Antonio, Texas // Worldwide Sync</div>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursor.style.transform = `translate(${x}px, ${y}px)`;
+            follower.style.transform = `translate(${x - 20}px, ${y - 20}px)`;
+        });
+
+        // Hover expansions for interactive elements
+        const activeElements = document.querySelectorAll('a, .social-card, .contact-photo');
+        activeElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                follower.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px) scale(1.8)`;
+                follower.style.background = 'rgba(0, 122, 255, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px) scale(1)`;
+                follower.style.background = 'transparent';
+            });
+        });
+
+        // Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = "0";
+            section.style.transform = "translateY(30px)";
+            section.style.transition = "1s cubic-bezier(0.23, 1, 0.32, 1)";
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
