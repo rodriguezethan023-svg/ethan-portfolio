@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Ethan Rodriguez</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --accent: #007AFF; 
+            --accent-glow: rgba(0, 122, 255, 0.4);
+            --text-main: #FFFFFF;
+            --text-muted: #888888;
+            --font-head: 'Outfit', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-head); overflow-x: hidden; line-height: 1.4; }
+
+        /* --- SYSTEM ELEMENTS --- */
+        .ambient-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%); pointer-events: none; z-index: -1; }
+        #cursor { position: fixed; width: 10px; height: 10px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s; }
+        #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out; }
+
+        /* --- NAVIGATION --- */
+        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000; }
+        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        /* --- HEADER --- */
+        .about-header { padding: 180px 10% 80px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .about-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; text-transform: uppercase; line-height: 1; letter-spacing: -2px; margin-bottom: 1.5rem; }
+        .about-subtitle { font-family: var(--font-mono); color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 1rem; }
+
+        /* --- CONTENT GRID --- */
+        .about-content { padding: 100px 10%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem; }
+        .story p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; font-weight: 300; }
+
+        /* --- SIDEBAR --- */
+        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; position: sticky; top: 120px; }
+        .skill-item { border-left: 2px solid var(--accent); padding-left: 20px; }
+        .skill-item h4 { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; letter-spacing: 2px; }
+        .skill-item p { font-size: 1rem; color: white; line-height: 1.4; }
+
+        /* --- CTA --- */
+        .cta { padding: 80px 10% 120px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .cta h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 2rem; font-weight: 900; }
+        .btn { padding: 1.1rem 2.8rem; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; border-radius: 100px; transition: var(--transition); font-weight: 700; display: inline-block; background: var(--accent); color: white; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--accent-glow); }
+
+        /* --- FOOTER --- */
+        .footer { padding: 3rem 5%; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+
+        @media (max-width: 1024px) {
+            .about-content { grid-template-columns: 1fr; gap: 4rem; }
+            .skills-grid { position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="index.html#work">Portfolio</a></li>
+            <li><a href="contact.html">Connect</a></li>
+        </ul>
+    </nav>
+
+    <header class="about-header">
+        <h1 class="about-title">FROM EL PASO TO SAN ANTONIO.<br>CREATING WITH PURPOSE.</h1>
+        <span class="about-subtitle">Graphic Designer • Photographer • Data Visualization</span>
+    </header>
+
+    <main class="about-content">
+        <!-- REVISED BIOGRAPHY SECTION -->
+        <article class="story">
+            <p>
+                I'm Ethan, a graphic designer, photographer, and visual storyteller passionate about creating work that connects with people. Born and raised in El Paso, Texas, I eventually made my way to San Antonio, where I now live, create, and continue growing both personally and professionally.
+            </p>
+            <p>
+                My journey into design wasn't a straight line. Growing up, I always had a passion for art, creativity, and visual expression, but I never saw it as a realistic career path. When I started college, I was pursuing nursing and spent nearly three years working toward that goal. Along the way, I realized something wasn't clicking. After taking anatomy multiple times and struggling to find the same excitement that others seemed to have for the field, I began questioning whether I was truly on the right path.
+            </p>
+            <p>
+                Around that same time, I discovered graphic design courses and decided to explore them. The moment I stepped into those classes, something felt different. For the first time, I could see myself building a career around creativity, problem-solving, and visual communication. What started as curiosity quickly became passion, and that's when my journey into graphic design truly began.
+            </p>
+            <p>
+                Before fully committing to a creative career, I also attended college in Colorado on a basketball scholarship. It was there that I met my wife, Brittany, who is originally from San Antonio. That experience taught me discipline, teamwork, resilience, and the importance of pushing beyond my comfort zone—qualities that continue to influence my work as a designer today.
+            </p>
+            <p>
+                After returning to Texas and making San Antonio home, I studied graphic design at San Antonio College and began building my freelance business. Through logo design, brand identity systems, social media content, photography, marketing initiatives, and data visualization projects, I've developed a passion for transforming ideas into visual experiences that feel intentional, memorable, and impactful.
+            </p>
+            <p>
+                Today, I create visual solutions that help ideas come to life. Whether I'm building a brand identity, capturing compelling photography, developing data-driven dashboards, or crafting content that tells a story, my goal remains the same: to create work that is meaningful, engaging, and built with purpose.
+            </p>
+        </article>
+
+        <aside class="skills-sidebar">
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h4>Primary Focus</h4>
+                    <p>Branding & Visual Identity Systems</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Storytelling</h4>
+                    <p>Cinematic Content & Photography</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Education</h4>
+                    <p>San Antonio College Alumni</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Technical Execution</h4>
+                    <p>Freelance Strategy & Digital Delivery</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <section class="cta">
+        <h2>Ready to start a project?</h2>
+        <a href="contact.html" class="btn">Connect with me</a>
+    </section>
+
+    <footer class="footer">
+        <div>© 2026 Ethan Rodriguez // TX</div>
+        <div>Graphic Designer & Storyteller // Available Worldwide</div>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+        });
+    </script>
+</body>
+</html>
