@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethan Rodriguez | Graphic Designer & Storyteller</title>
+    <title>Ethan Rodriguez | Portfolio Hub</title>
     
-    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
@@ -25,231 +24,72 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         html { scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-head); overflow-x: hidden; line-height: 1.4; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: var(--font-head);
-            overflow-x: hidden;
-            line-height: 1.4;
-        }
+        .ambient-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%); pointer-events: none; z-index: -1; }
+        #cursor { position: fixed; width: 10px; height: 10px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s; }
+        #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out, background 0.3s; }
 
-        /* --- BACKGROUND ELEMENTS --- */
-        .ambient-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%);
-            pointer-events: none; z-index: -1;
-        }
-
-        /* --- CUSTOM CURSOR --- */
-        #cursor {
-            position: fixed; width: 10px; height: 10px; background: #fff;
-            border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s;
-        }
-        #cursor-follower {
-            position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent);
-            border-radius: 50%; pointer-events: none; z-index: 10000;
-            transition: transform 0.2s ease-out, background 0.3s;
-        }
-
-        /* --- NAVIGATION --- */
-        .nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000;
-        }
-
-        .nav-logo {
-            font-family: var(--font-head); font-weight: 700; font-size: 1.4rem;
-            color: white; text-decoration: none; letter-spacing: -1px;
-        }
+        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000; }
+        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
         .nav-logo span { color: var(--accent); }
-
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-muted); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
-            font-weight: 500;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); font-weight: 500; }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr;
-            align-items: center; padding: 0 5% 0 10%; position: relative;
-        }
-
-        .hero-eyebrow {
-            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
-            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem; display: block;
-        }
-
-        .hero-title {
-            font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 900;
-            line-height: 0.9; text-transform: uppercase; letter-spacing: -3px; margin-bottom: 2rem;
-        }
-
-        .hero-description {
-            font-size: 1.1rem; color: var(--text-muted); max-width: 500px;
-            margin-bottom: 3rem; font-weight: 300; line-height: 1.6;
-        }
-
+        .hero { height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 0 5% 0 10%; position: relative; }
+        .hero-eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
+        .hero-title { font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; letter-spacing: -3px; margin-bottom: 2rem; }
+        .hero-description { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 3rem; font-weight: 300; line-height: 1.6; }
         .btn-group { display: flex; gap: 1.5rem; }
-        .btn {
-            padding: 1.1rem 2.4rem; font-family: var(--font-mono); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
-            border-radius: 100px; transition: var(--transition); font-weight: 700;
-            display: inline-block;
-        }
+        .btn { padding: 1.1rem 2.4rem; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; border-radius: 100px; transition: var(--transition); font-weight: 700; display: inline-block; }
         .btn-primary { background: var(--accent); color: white; box-shadow: 0 10px 30px var(--accent-glow); }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 20px 40px var(--accent-glow); }
         .btn-secondary { border: 1px solid rgba(255,255,255,0.15); color: white; }
-        .btn-secondary:hover { background: white; color: black; }
+        .btn:hover { transform: translateY(-5px); }
 
-        .hero-visual { display: flex; justify-content: flex-end; position: relative; }
-        .image-reveal {
-            width: 85%; aspect-ratio: 4/5; overflow: hidden; border-radius: 24px;
-            position: relative; transition: var(--transition); border: 1px solid rgba(255,255,255,0.1);
-        }
-        .hero-photo {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(1) brightness(0.8); transition: 1.2s var(--transition);
-        }
-        .image-reveal:hover .hero-photo { filter: grayscale(0) brightness(1); transform: scale(1.05); }
+        .hero-visual { display: flex; justify-content: flex-end; }
+        .image-reveal { width: 85%; aspect-ratio: 4/5; overflow: hidden; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); }
+        .hero-photo { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 1.2s var(--transition); }
+        .image-reveal:hover .hero-photo { filter: grayscale(0); transform: scale(1.05); }
 
-        /* --- UPDATED ABOUT ME SECTION --- */
-        .about {
-            padding: 120px 10%;
-            display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
-            gap: 6rem;
-            align-items: start;
-            background: #080808;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* NEW MINIMALIST QUOTE BLOCK */
-        .about-quote-wrap {
-            padding-top: 1rem;
-            position: relative;
-        }
-
-        .about-quote-wrap blockquote {
-            font-size: clamp(2.2rem, 3.8vw, 3.4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            text-transform: uppercase;
-            color: var(--text-main);
-            margin-bottom: 2rem;
-            letter-spacing: -1px;
-        }
-
-        .about-quote-wrap cite {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-style: normal;
-        }
-
-        .about-content h2 {
-            font-size: 3rem; text-transform: uppercase; margin-bottom: 2rem; font-weight: 800; line-height: 1.1;
-        }
-        .about-content p {
-            font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8;
-        }
-
-        .skills-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
-        }
-        .skill-item {
-            border-left: 2px solid var(--accent); padding-left: 15px;
-        }
-        .skill-item h4 { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
-        .skill-item p { font-size: 0.9rem; margin-bottom: 0; color: white; }
-
-        /* --- MARQUEE --- */
+        /* MARQUEE STYLES */
         .marquee {
-            padding: 3rem 0; background: #000; border-top: 1px solid rgba(255,255,255,0.05);
-            overflow: hidden; display: flex;
+            padding: 3.5rem 0; background: #000; border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; display: flex;
         }
-        .marquee-track { display: flex; white-space: nowrap; animation: scroll 25s linear infinite; }
+        .marquee-track { display: flex; white-space: nowrap; animation: scroll 30s linear infinite; }
         .marquee-track h2 {
-            font-size: 3rem; font-weight: 900; text-transform: uppercase;
-            padding: 0 3rem; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            font-size: 3.5rem; font-weight: 900; text-transform: uppercase;
+            padding: 0 4rem; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.25);
+            letter-spacing: -1px;
         }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- CATEGORY HUB SECTION --- */
-        .hub { padding: 100px 5%; background: var(--bg); }
-        .hub-header { margin-bottom: 5rem; text-align: center; }
-        .hub-title { font-size: 4rem; text-transform: uppercase; letter-spacing: -2px; font-weight: 900; }
-        
-        .hub-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 1.5rem; 
-        }
+        /* SECTION DIVIDER */
+        .section-divider { padding: 0 10%; margin: 4rem 0 2rem; }
+        .divider-line { height: 1px; background: rgba(255,255,255,0.08); width: 100%; position: relative; }
+        .divider-label { position: absolute; top: -10px; left: 0; background: var(--bg); padding-right: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; }
 
-        .hub-card {
-            background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08);
-            padding: 5rem 3rem; text-decoration: none; color: white; border-radius: 24px;
-            position: relative; overflow: hidden; transition: var(--transition);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            height: 480px; text-align: center;
-        }
+        .hub { padding: 80px 5% 120px; }
+        .hub-header { margin-bottom: 4rem; text-align: center; }
+        .hub-title { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: -2px; font-weight: 900; }
+        .hub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .hub-card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08); padding: 5rem 3rem; text-decoration: none; color: white; border-radius: 24px; position: relative; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: center; align-items: center; height: 480px; text-align: center; }
+        .cat-name { font-size: 4.5rem; font-weight: 900; text-transform: uppercase; line-height: 0.85; z-index: 2; color: rgba(255,255,255,0.15); -webkit-text-stroke: 1.5px rgba(255,255,255,0.6); transition: var(--transition); letter-spacing: -2px; }
+        .hub-card:hover .cat-name { color: #fff; -webkit-text-stroke: 1.5px #fff; transform: scale(1.05); }
+        .card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.05; filter: grayscale(1); transition: 1s var(--transition); z-index: 1; }
+        .hub-card:hover .card-bg { opacity: 0.25; filter: grayscale(0); }
+        .cat-desc { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-top: 2rem; letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
 
-        .cat-name { 
-            font-size: 4.5rem; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            line-height: 0.85; 
-            z-index: 2;
-            color: rgba(255,255,255,0.15);
-            -webkit-text-stroke: 1.5px rgba(255,255,255,0.6);
-            transition: var(--transition);
-            letter-spacing: -2px;
-        }
-
-        .hub-card:hover .cat-name {
-            color: #fff;
-            -webkit-text-stroke: 1.5px #fff;
-            text-shadow: 0 0 30px var(--accent-glow);
-            transform: scale(1.05);
-        }
-
-        .card-bg {
-            position: absolute; inset: 0; 
-            background-size: cover; background-position: center;
-            opacity: 0.05; filter: grayscale(1);
-            transition: 1s var(--transition); z-index: 1;
-        }
-        .hub-card:hover .card-bg { opacity: 0.25; filter: grayscale(0); transform: scale(1.1); }
-
-        .cat-desc { 
-            font-family: var(--font-mono); font-size: 0.75rem; 
-            color: var(--accent); margin-top: 2rem; 
-            letter-spacing: 3px; text-transform: uppercase;
-            z-index: 2; opacity: 0.6;
-        }
-
-        /* --- FOOTER --- */
-        .footer {
-            padding: 3rem 5%; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: space-between; font-family: var(--font-mono);
-            font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;
-        }
+        .footer { padding: 3rem 5%; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
 
         @media (max-width: 1024px) {
-            .hero, .about, .hub-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-visual { margin: 0 auto; width: 80%; }
-            .about-quote-wrap { padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
-            .hub-card { height: 380px; padding: 2rem; }
-            .cat-name { font-size: 3rem; }
+            .hero, .hub-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-visual { display: none; }
             .btn-group { justify-content: center; }
+            .hub-card { height: 350px; }
+            .cat-name { font-size: 3rem; }
+            .marquee-track h2 { font-size: 2.5rem; padding: 0 2rem; }
         }
     </style>
 </head>
@@ -262,27 +102,23 @@
     <nav class="nav">
         <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="#work">Portfolio</a></li>
             <li><a href="contact.html">Connect</a></li>
         </ul>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
             <span class="hero-eyebrow">Graphic Designer & Storyteller</span>
             <h1 class="hero-title">Ethan<br>Rodriguez.</h1>
-            <p class="hero-description">
-                I create branding, digital content, and visual experiences inspired by creativity, storytelling, and modern design.
-            </p>
+            <p class="hero-description">I create branding, digital content, and visual experiences inspired by creativity, storytelling, and modern design.</p>
             <div class="btn-group">
                 <a href="#work" class="btn btn-primary">View Work</a>
-                <a href="#about" class="btn btn-secondary">About Me</a>
+                <a href="about.html" class="btn btn-secondary">About Me</a>
             </div>
         </div>
-
         <div class="hero-visual">
             <div class="image-reveal">
                 <img src="https://i.ibb.co/C3ZK7wYk/013-AB553-D70-F-4537-9-CB6-0693-DC9-DD306.jpg" alt="Ethan Rodriguez" class="hero-photo">
@@ -290,103 +126,51 @@
         </div>
     </section>
 
-    <!-- REFINED ABOUT ME SECTION -->
-    <section class="about" id="about">
-        <!-- REPLACED IMAGE WITH IMPACTFUL QUOTE -->
-        <div class="about-quote-wrap">
-            <span class="hero-eyebrow">Mission</span>
-            <blockquote id="quote-trigger">
-                Creating work that connects people, ideas, and stories.
-            </blockquote>
-            <cite>— Ethan Rodriguez</cite>
-        </div>
-
-        <div class="about-content">
-            <span class="hero-eyebrow">The Background</span>
-            <h2>FROM EL PASO TO SAN ANTONIO.<br>CREATING WITH PURPOSE.</h2>
-            
-            <p>
-                I'm Ethan, a graphic designer and visual storyteller passionate about creating work that connects with people. Born and raised in El Paso, Texas, I eventually made my way to San Antonio, where I now live, create, and continue growing as a designer.
-            </p>
-            <p>
-                My journey into design wasn't a straight line. Before pursuing a creative career, I attended college in Colorado on a basketball scholarship. It was there that I met my wife, Brittany, who is originally from San Antonio. That chapter of my life taught me discipline, teamwork, and the value of pushing beyond my comfort zone—lessons that continue to influence my work today.
-            </p>
-            <p>
-                After returning to Texas and making San Antonio home, I studied graphic design at San Antonio College and began building my freelance business. Through logo design, brand identity systems, social media content, photography, and digital marketing projects, I've developed a passion for transforming ideas into visual experiences that feel intentional, memorable, and impactful.
-            </p>
-            <p>
-                Today, I create visual solutions that help ideas come to life. Whether I'm designing a brand identity, capturing compelling photography, developing data-driven dashboards, or creating content that tells a story, my goal is always the same: to create work that is meaningful, engaging, and built with purpose.
-            </p>
-
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <h4>Primary Focus</h4>
-                    <p>Branding & Visual Identity</p>
-                </div>
-                <div class="skill-item">
-                    <h4>Storytelling</h4>
-                    <p>Cinematic Content & Photography</p>
-                </div>
-                <div class="skill-item">
-                    <h4>Education</h4>
-                    <p>San Antonio College</p>
-                </div>
-                <div class="skill-item">
-                    <h4>Business</h4>
-                    <p>Freelance Strategy & Execution</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- RESTORED MARQUEE SECTION -->
     <div class="marquee">
         <div class="marquee-track">
-            <h2>Brand Strategy</h2>
-            <h2>Visual Identity</h2>
-            <h2>Art Direction</h2>
-            <h2>Motion Systems</h2>
+            <h2>Brand Identity</h2>
             <h2>Photography</h2>
-            <h2>Anime Influence</h2>
-            <!-- Loop -->
-            <h2>Brand Strategy</h2>
-            <h2>Visual Identity</h2>
-            <h2>Art Direction</h2>
-            <h2>Motion Systems</h2>
+            <h2>Data Visualization</h2>
+            <h2>Marketing</h2>
+            <h2>Creative Strategy</h2>
+            <h2>Visual Storytelling</h2>
+            <!-- Duplicated for Infinite Effect -->
+            <h2>Brand Identity</h2>
             <h2>Photography</h2>
-            <h2>Anime Influence</h2>
+            <h2>Data Visualization</h2>
+            <h2>Marketing</h2>
+            <h2>Creative Strategy</h2>
+            <h2>Visual Storytelling</h2>
         </div>
     </div>
 
-    <!-- CATEGORY HUB SECTION -->
+    <div class="section-divider">
+        <div class="divider-line">
+            <span class="divider-label">Project Archives // 2026</span>
+        </div>
+    </div>
+
     <section class="hub" id="work">
         <div class="hub-header">
-            <span class="hero-eyebrow">Project Archives</span>
-            <h2 class="hub-title">Explore Categories</h2>
+            <h2 class="hub-title">Explore Work</h2>
         </div>
-
         <div class="hub-grid">
-            <!-- BRANDING -->
             <a href="brand-design.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800');"></div>
                 <h3 class="cat-name">Brand<br>Identity</h3>
                 <p class="cat-desc">Visual Systems // Logos</p>
             </a>
-
-            <!-- DATA VIZ -->
             <a href="dataviz.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bbbda50a5f4a?auto=format&fit=crop&q=80&w=800');"></div>
                 <h3 class="cat-name">Data<br>Viz</h3>
                 <p class="cat-desc">Analytics // Dashboards</p>
             </a>
-
-            <!-- MARKETING -->
             <a href="marketing.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=800');"></div>
                 <h3 class="cat-name">Market<br>Comms</h3>
                 <p class="cat-desc">Campaigns // Strategy</p>
             </a>
-
-            <!-- PHOTOGRAPHY -->
             <a href="photography.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800');"></div>
                 <h3 class="cat-name">Visual<br>Art</h3>
@@ -397,51 +181,15 @@
 
     <footer class="footer">
         <div>© 2026 Ethan Rodriguez // TX</div>
-        <div style="text-align: right;">Graphic Designer & Storyteller // Available Worldwide</div>
+        <div>Graphic Designer & Storyteller</div>
     </footer>
 
     <script>
-        // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
-
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            cursor.style.transform = `translate(${x}px, ${y}px)`;
-            follower.style.transform = `translate(${x - 20}px, ${y - 20}px)`;
-        });
-
-        // Hover Effect Logic
-        const interactiveElements = document.querySelectorAll('a, .btn, .hub-card, .image-reveal, .about-quote-wrap');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                follower.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px) scale(2)`;
-                follower.style.background = 'rgba(0, 122, 255, 0.1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                follower.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px) scale(1)`;
-                follower.style.background = 'transparent';
-            });
-        });
-
-        // Scroll Reveal Observer
-        const observerOptions = { threshold: 0.15 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = "0";
-            section.style.transform = "translateY(40px)";
-            section.style.transition = "1s cubic-bezier(0.23, 1, 0.32, 1)";
-            observer.observe(section);
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
         });
     </script>
 </body>
