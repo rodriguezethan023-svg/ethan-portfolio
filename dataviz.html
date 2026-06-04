@@ -20,8 +20,6 @@
             --surface-light: #181818;
             --accent: #007AFF; 
             --accent-glow: rgba(0, 122, 255, 0.4);
-            --spurs-silver: #C4CED4;
-            --thunder-blue: #007AC1;
             --text-main: #FFFFFF;
             --text-muted: #888888;
             --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -30,148 +28,81 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         html { scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.4; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.4;
-        }
-
-        /* --- BACKGROUND FX --- */
-        .ambient-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%);
-            pointer-events: none; z-index: -1;
-        }
-
-        /* --- CUSTOM CURSOR --- */
-        #cursor {
-            position: fixed; width: 8px; height: 8px; background: #fff;
-            border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s;
-        }
-        #cursor-follower {
-            position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent);
-            border-radius: 50%; pointer-events: none; z-index: 10000;
-            transition: transform 0.2s ease-out, background 0.3s;
-        }
+        /* --- SYSTEM OVERLAYS --- */
+        #cursor { position: fixed; width: 8px; height: 8px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s; }
+        #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out; }
+        .ambient-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%); pointer-events: none; z-index: -1; }
 
         /* --- NAVIGATION --- */
-        .nav {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border); z-index: 1000;
-        }
+        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
         .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
         .nav-logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-muted); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
-        }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
         .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-        /* --- HERO: EXACT BRANDING SYNC --- */
-        .hero {
-            height: 60vh; display: flex; flex-direction: column; justify-content: center;
-            padding: 0 10%; border-bottom: 1px solid var(--border); position: relative;
-        }
+        /* --- HERO --- */
+        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; border-bottom: 1px solid var(--border); position: relative; }
+        .hero-tagline { font-family: 'Space Grotesk', sans-serif; color: var(--accent); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1rem; font-size: 0.7rem; }
+        .hero-title { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 900; text-transform: uppercase; letter-spacing: -4px; line-height: 0.9; }
+        .hero-title span { display: block; color: transparent; -webkit-text-stroke: 1.5px white; }
 
-        .hero-tagline { 
-            font-family: 'Space Grotesk', sans-serif; 
-            color: var(--accent); 
-            letter-spacing: 5px; 
-            text-transform: uppercase; 
-            margin-bottom: 1rem;
-            font-size: 0.7rem;
-        }
-
-        .hero-title {
-            font-size: clamp(3.5rem, 10vw, 8rem); 
-            font-weight: 900;
-            text-transform: uppercase; 
-            letter-spacing: -4px; 
-            line-height: 0.9;
-        }
-
-        /* Outlined typography exactly matching brand-design.html */
-        .hero-title span { 
-            display: block;
-            color: transparent; 
-            -webkit-text-stroke: 1.5px white; 
-        }
-
-        /* --- CASE STUDY CONTENT --- */
-        .case-study { padding: 80px 10%; border-bottom: 1px solid var(--border); position: relative; }
-        .section-label { font-family: 'Space Grotesk', sans-serif; color: var(--accent); font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 2rem; display: block; }
-
+        /* --- PROJECT COMPONENTS --- */
+        .case-study { padding: 100px 10%; border-bottom: 1px solid var(--border); }
+        .section-label { font-family: 'Space Grotesk', sans-serif; color: var(--accent); font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 3rem; display: block; }
         .proj-header { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; margin-bottom: 60px; }
-        .proj-title { font-size: 4rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; line-height: 1; }
-        .proj-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; }
+        .proj-title { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; line-height: 0.95; }
+        .proj-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; }
 
-        .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-        .tag { 
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; color: var(--accent); 
-            border: 1px solid var(--accent); padding: 6px 16px; border-radius: 100px;
-            text-transform: uppercase; letter-spacing: 1px; background: rgba(0, 122, 255, 0.05);
-        }
-
-        .proj-brief-box {
-            background: #0a0a0a; border: 1px solid var(--border); padding: 40px; border-radius: 20px;
-        }
+        .proj-brief-box { background: #0a0a0a; border: 1px solid var(--border); padding: 40px; border-radius: 28px; }
         .brief-item { margin-bottom: 25px; }
-        .brief-item label { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
-        .brief-item p { font-size: 0.9rem; font-weight: 500; color: #fff; }
+        .brief-item:last-child { margin-bottom: 0; }
+        .brief-item label { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 2px; }
+        .brief-item p { font-size: 0.9rem; font-weight: 500; color: white; }
 
-        .kpi-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;
-        }
-        .kpi-card {
-            background: var(--surface); padding: 2rem; border: 1px solid var(--border); border-radius: 20px; transition: var(--transition);
-        }
-        .kpi-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .kpi-val { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; }
+        /* KPI Cards */
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .kpi-card { background: var(--surface); padding: 2rem; border: 1px solid var(--border); border-radius: 20px; transition: var(--transition); }
+        .kpi-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .kpi-val { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: #fff; }
         .kpi-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; display: block; }
 
-        .dashboard-row {
-            display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;
-        }
-        .chart-container {
-            background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px;
-        }
+        /* Tools Grid */
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 60px; }
+        .tool-card { background: #0a0a0a; border: 1px solid var(--border); padding: 20px; border-radius: 16px; text-align: center; transition: var(--transition); display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        .tool-card img { width: 35px; height: 35px; margin-bottom: 12px; filter: grayscale(1); transition: 0.4s; object-fit: contain; }
+        .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .tool-card:hover img { filter: grayscale(0); }
+        .tool-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+
+        /* Dashboard Rows */
+        .dashboard-row { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .chart-container { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; position: relative; }
         .chart-header { margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
         .chart-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
 
-        select {
-            background: var(--surface-light); color: white; border: 1px solid var(--border); padding: 0.6rem 1rem; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; outline: none; transition: 0.3s;
-        }
+        select { background: var(--surface-light); color: white; border: 1px solid var(--border); padding: 0.6rem 1rem; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; outline: none; }
 
-        .results-list { display: flex; flex-direction: column; gap: 1rem; }
-        .game-card {
-            background: var(--surface-light); padding: 1.5rem; border-radius: 12px; cursor: pointer; border: 1px solid transparent; transition: 0.3s;
-        }
-        .game-card:hover { border-color: var(--border); background: #202020; }
-        .game-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; }
-        .game-details { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; font-size: 0.85rem; color: var(--text-muted); }
+        .game-card { background: var(--surface-light); padding: 1.5rem; border-radius: 12px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; margin-bottom: 10px; }
+        .game-card:hover { border-color: var(--accent); }
+        .game-details { max-height: 0; overflow: hidden; transition: 0.4s; font-size: 0.85rem; color: var(--text-muted); }
         .game-card.active .game-details { max-height: 100px; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
 
-        /* --- CTA --- */
-        .cta { padding: 120px 10%; text-align: center; }
-        .btn-primary { 
-            padding: 1.2rem 3rem; background: var(--accent); color: white; border-radius: 100px;
-            text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-            display: inline-block; transition: var(--transition); text-transform: uppercase; letter-spacing: 3px;
-        }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--accent-glow); }
+        .product-list { list-style: none; }
+        .product-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .product-item:last-child { border-bottom: none; }
+        .product-item .count { color: var(--accent); font-weight: 700; }
+
+        /* PROJECT DIVIDER */
+        .project-divider { padding: 60px 10%; text-align: center; }
+        .divider-line { height: 1px; background: var(--border); width: 100%; position: relative; }
+        .divider-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg); padding: 0 30px; font-family: 'Space Grotesk'; font-size: 0.6rem; letter-spacing: 5px; color: var(--text-muted); text-transform: uppercase; }
 
         .footer { padding: 3rem 10%; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
 
-        @media (max-width: 1100px) {
-            .proj-header, .kpi-grid, .dashboard-row { grid-template-columns: 1fr; }
-            .hero, .case-study { padding: 80px 5%; }
-        }
+        @media (max-width: 1100px) { .proj-header, .kpi-grid, .dashboard-row, .tools-grid { grid-template-columns: 1fr; } .hero, .case-study { padding: 60px 5%; } }
     </style>
 </head>
 <body>
@@ -184,84 +115,132 @@
         <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="index.html#work" class="active">Portfolio</a></li>
-            <li><a href="contact.html">Connect</a></li>
+            <li><a href="mailto:rodriguezethan023@gmail.com">Connect</a></li>
         </ul>
     </nav>
 
     <header class="hero">
         <span class="hero-tagline">Data Visualization Archive</span>
-        <!-- SYNCED HERO TITLE: VISUALLY IDENTICAL TO BRANDING PAGE -->
         <h1 class="hero-title">DATA &<br><span>ANALYTICS</span></h1>
     </header>
 
-    <!-- LIVE CASE STUDY -->
+    <!-- SECTION 01: NBA DASHBOARD -->
     <section class="case-study" id="nba-dashboard">
-        <span class="section-label">Interactive Case Study // NBA Playoff Analytics</span>
+        <span class="section-label">Archive_01 // NBA Playoff Analytics</span>
         
         <div class="proj-header">
             <div>
-                <h2 class="proj-title">NBA Playoff Analytics Dashboard</h2>
+                <h2 class="proj-title">NBA Playoff Dashboard</h2>
                 <p class="proj-desc">
-                    An end-to-end interactive dashboard engineered to visualize team performance and player impact. Using real-world playoff data from the 2014 Spurs vs. Thunder series, this project demonstrates the transformation of raw game metrics into a professional analytics interface.
+                    High-performance sports analytics dashboard visualizing historic playoff data from the 2014 Spurs vs. Thunder series. This project transforms raw game metrics into a professional coaching-level intelligence interface.
                 </p>
-                <div class="tag-cloud">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">Chart.js</span>
-                    <span class="tag">Data Visualization</span>
+                
+                <div class="tools-grid">
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/microsoft-excel-2019.png" alt="Excel"><div class="tool-name">Microsoft Excel</div></div>
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/power-bi.png" alt="Power BI"><div class="tool-name">Power BI</div></div>
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/javascript--v1.png" alt="JS"><div class="tool-name">JavaScript</div></div>
+                    <div class="tool-card"><img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="Chart.js"><div class="tool-name">Chart.js</div></div>
                 </div>
             </div>
             
             <div class="proj-brief-box">
-                <div class="brief-item"><label>Primary Engine</label><p>Chart.js / Dynamic JSON</p></div>
-                <div class="brief-item"><label>Visual Logic</label><p>High-Impact Editorial Narrative</p></div>
-                <div class="brief-item"><label>Status</label><p>Live Portfolio Application</p></div>
+                <div class="brief-item"><label>Objective</label><p>Performance Modeling</p></div>
+                <div class="brief-item"><label>Data Source</label><p>NBA Postseason Database</p></div>
+                <div class="brief-item"><label>Key Metric</label><p>Team Shooting Efficiency</p></div>
             </div>
         </div>
 
-        <!-- LIVE COMPONENTS -->
         <div class="kpi-grid">
-            <div class="kpi-card"><span class="kpi-lbl">Series Record</span><div class="kpi-val">4 - 2</div><span class="kpi-lbl" style="color: var(--accent); opacity: 0.8;">SAS Wins Series</span></div>
-            <div class="kpi-card"><span class="kpi-lbl">SAS Avg PPG</span><div class="kpi-val">108.5</div></div>
-            <div class="kpi-card"><span class="kpi-lbl">OKC Avg PPG</span><div class="kpi-val">101.2</div></div>
+            <div class="kpi-card"><span class="kpi-lbl">Series Result</span><div class="kpi-val">4 - 2</div><span class="kpi-lbl" style="color: #00ff88;">SAS Advanced</span></div>
+            <div class="kpi-card"><span class="kpi-lbl">SAS AVG PPG</span><div class="kpi-val">108.5</div></div>
+            <div class="kpi-card"><span class="kpi-lbl">OKC AVG PPG</span><div class="kpi-val">101.2</div></div>
             <div class="kpi-card"><span class="kpi-lbl">Avg Rebounds</span><div class="kpi-val">44.2</div></div>
         </div>
 
         <div class="dashboard-row">
-            <div class="chart-container"><div class="chart-header"><span class="chart-title">Scoring Trends</span></div><div style="height: 350px;"><canvas id="lineChart"></canvas></div></div>
-            <div class="chart-container"><div class="chart-header"><span class="chart-title">Team Efficiency</span></div><div style="height: 350px;"><canvas id="barChart"></canvas></div></div>
+            <div class="chart-container"><div class="chart-header"><span class="chart-title">Scoring Trends</span></div><div style="height: 350px;"><canvas id="nbaLine"></canvas></div></div>
+            <div class="chart-container"><div class="chart-header"><span class="chart-title">Team Efficiency</span></div><div style="height: 350px;"><canvas id="nbaBar"></canvas></div></div>
         </div>
 
         <div class="dashboard-row">
             <div class="chart-container">
                 <div class="chart-header">
-                    <span class="chart-title">Player Impact</span>
-                    <select id="playerSelect" onchange="updatePlayerChart()">
+                    <span class="chart-title">Player Impact Radar</span>
+                    <select id="playerSelect" onchange="updateNbaPlayer()">
                         <option value="duncan">Tim Duncan (SAS)</option>
                         <option value="durant">Kevin Durant (OKC)</option>
                         <option value="parker">Tony Parker (SAS)</option>
                         <option value="westbrook">Russell Westbrook (OKC)</option>
                     </select>
                 </div>
-                <div style="height: 300px;"><canvas id="playerChart"></canvas></div>
+                <div style="height: 300px;"><canvas id="nbaRadar"></canvas></div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-header"><span class="chart-title">Series Timeline</span></div>
-                <div class="results-list">
-                    <div class="game-card" onclick="toggleGame(this)"><div class="game-header"><span>Game 6: SAS @ OKC</span><span style="color: var(--accent);">112 - 107 (OT)</span></div><div class="game-details">Duncan: 19 PTS, 15 REB. Boris Diaw: 26 PTS. Spurs clinch WCF Finals berth.</div></div>
-                    <div class="game-card" onclick="toggleGame(this)"><div class="game-header"><span>Game 5: OKC @ SAS</span><span style="color: var(--accent);">89 - 117</span></div><div class="game-details">Danny Green: 6/9 3PM. Spurs dominate the paint, lead by 20+ at halftime.</div></div>
-                </div>
+                <div class="game-card" onclick="this.classList.toggle('active')"><strong>Game 6: SAS @ OKC</strong><div class="game-details">112-107 spurs win in OT. Duncan: 19 PTS, 15 REB.</div></div>
+                <div class="game-card" onclick="this.classList.toggle('active')"><strong>Game 5: OKC @ SAS</strong><div class="game-details">117-89 spurs blowout. Danny Green: 6/9 3PM.</div></div>
             </div>
         </div>
     </section>
 
-    <section class="cta">
-        <h2>Need Data That<br><span>Tells A Story?</span></h2>
-        <a href="contact.html" class="btn-primary">Initiate Project</a>
+    <div class="project-divider">
+        <div class="divider-line"><span class="divider-text">Next Project Archive</span></div>
+    </div>
+
+    <!-- SECTION 02: LATE NIGHT LEGENDS -->
+    <section class="case-study" id="late-night-dashboard">
+        <span class="section-label">Archive_02 // Marketing Analytics // Gopuff</span>
+        
+        <div class="proj-header">
+            <div>
+                <h2 class="proj-title">Late Night Legends Analytics</h2>
+                <p class="proj-desc">
+                    Marketing business intelligence dashboard tracking the performance of the 'Always Awake' campaign. This platform analyzes ordering behavior, marketing channel ROAS, and audience engagement for late-night demographics.
+                </p>
+                
+                <div class="tools-grid">
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/microsoft-excel-2019.png"><div class="tool-name">Microsoft Excel</div></div>
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/power-bi.png"><div class="tool-name">Power BI</div></div>
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/html-5--v1.png"><div class="tool-name">HTML5</div></div>
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/css3.png"><div class="tool-name">CSS3</div></div>
+                    <div class="tool-card"><img src="https://img.icons8.com/color/96/javascript--v1.png"><div class="tool-name">JavaScript</div></div>
+                </div>
+            </div>
+            
+            <div class="proj-brief-box">
+                <div class="brief-item"><label>Campaign Focus</label><p>Conversion & Late Night Growth</p></div>
+                <div class="brief-item"><label>Key Insight</label><p>11PM-2AM Peak Activity Window</p></div>
+                <div class="brief-item"><label>Deliverable</label><p>Interactive Executive Dashboard</p></div>
+            </div>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card"><span class="kpi-lbl">Campaign Revenue</span><div class="kpi-val">$142K</div></div>
+            <div class="kpi-card"><span class="kpi-lbl">Late Night Orders</span><div class="kpi-val">12,402</div></div>
+            <div class="kpi-card"><span class="kpi-lbl">Campaign ROAS</span><div class="kpi-val">6.2x</div></div>
+            <div class="kpi-card"><span class="kpi-lbl">Conversion %</span><div class="kpi-val">4.8%</div></div>
+        </div>
+
+        <div class="dashboard-row">
+            <div class="chart-container"><div class="chart-header"><span class="chart-title">Orders By Hour (Night Period)</span></div><div style="height: 350px;"><canvas id="gopuffLine"></canvas></div></div>
+            <div class="chart-container"><div class="chart-header"><span class="chart-title">Audience Segments</span></div><div style="height: 350px;"><canvas id="gopuffDonut"></canvas></div></div>
+        </div>
+
+        <div class="dashboard-row">
+            <div class="chart-container"><div class="chart-header"><span class="chart-title">Channel ROAS</span></div><div style="height: 300px;"><canvas id="gopuffBar"></canvas></div></div>
+            <div class="chart-container">
+                <div class="chart-header"><span class="chart-title">Top Ordered Products</span></div>
+                <ul class="product-list">
+                    <li class="product-item"><span>Energy Drink Bundles</span> <span class="count">3,410</span></li>
+                    <li class="product-item"><span>Midnight Snack Packs</span> <span class="count">2,890</span></li>
+                    <li class="product-item"><span>Ice Cream Pints</span> <span class="count">1,950</span></li>
+                    <li class="product-item"><span>Gamer Fuel Box</span> <span class="count">1,420</span></li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
@@ -270,6 +249,7 @@
     </footer>
 
     <script>
+        // Custom Cursor
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         document.addEventListener('mousemove', (e) => {
@@ -277,58 +257,80 @@
             follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
         });
 
+        // Global Chart Defaults
         Chart.defaults.color = '#888888';
         Chart.defaults.font.family = "'Outfit', sans-serif";
 
-        const ctxLine = document.getElementById('lineChart').getContext('2d');
-        const lineChart = new Chart(ctxLine, {
+        /* --- DASHBOARD 01: NBA --- */
+        const nbaLine = new Chart(document.getElementById('nbaLine'), {
             type: 'line',
             data: {
                 labels: ['G1', 'G2', 'G3', 'G4', 'G5', 'G6'],
-                datasets: [{ label: 'Spurs', data: [122, 112, 97, 92, 117, 112], borderColor: '#C4CED4', backgroundColor: 'rgba(196, 206, 212, 0.1)', fill: true, tension: 0.4 }, 
-                           { label: 'Thunder', data: [105, 77, 106, 105, 89, 107], borderColor: '#007AC1', backgroundColor: 'rgba(0, 122, 193, 0.1)', fill: true, tension: 0.4 }]
+                datasets: [
+                    { label: 'Spurs', data: [122, 112, 97, 92, 117, 112], borderColor: '#C4CED4', backgroundColor: 'rgba(196, 206, 212, 0.1)', fill: true, tension: 0.4 },
+                    { label: 'Thunder', data: [105, 77, 106, 105, 89, 107], borderColor: '#007AC1', backgroundColor: 'rgba(0, 122, 193, 0.1)', fill: true, tension: 0.4 }
+                ]
             },
-            options: { responsive: true, maintainAspectRatio: false, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, border: { display: false } }, x: { grid: { display: false } } } }
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' } }, x: { grid: { display: false } } } }
         });
 
-        const ctxBar = document.getElementById('barChart').getContext('2d');
-        new Chart(ctxBar, {
+        new Chart(document.getElementById('nbaBar'), {
             type: 'bar',
             data: {
                 labels: ['FG%', '3P%', 'REB', 'AST'],
-                datasets: [{ label: 'SAS', data: [48, 39, 44, 25], backgroundColor: '#C4CED4' }, 
-                           { label: 'OKC', data: [44, 34, 42, 19], backgroundColor: '#007AC1' }]
+                datasets: [
+                    { label: 'SAS', data: [48, 39, 44, 25], backgroundColor: '#C4CED4' },
+                    { label: 'OKC', data: [44, 34, 42, 19], backgroundColor: '#007AC1' }
+                ]
             },
             options: { responsive: true, maintainAspectRatio: false }
         });
 
-        const playerData = {
-            duncan: { pts: 18, reb: 11, ast: 2, blk: 1.5 },
-            durant: { pts: 26, reb: 8, ast: 4, blk: 1.1 },
-            parker: { pts: 17, reb: 2, ast: 6, blk: 0.1 },
-            westbrook: { pts: 27, reb: 7, ast: 8, blk: 0.4 }
+        const nbaPlayerData = {
+            duncan: [18, 11, 2, 1.5], durant: [26, 8, 4, 1.1], parker: [17, 2, 6, 0.1], westbrook: [27, 7, 8, 0.4]
         };
-
-        const ctxPlayer = document.getElementById('playerChart').getContext('2d');
-        let playerChart = new Chart(ctxPlayer, {
+        let nbaRadar = new Chart(document.getElementById('nbaRadar'), {
             type: 'radar',
             data: {
                 labels: ['Points', 'Rebounds', 'Assists', 'Blocks'],
-                datasets: [{ label: 'Series Average', data: [18, 11, 2, 1.5], backgroundColor: 'rgba(0, 122, 255, 0.2)', borderColor: '#007AFF' }]
+                datasets: [{ label: 'Impact Profile', data: nbaPlayerData.duncan, backgroundColor: 'rgba(0, 122, 255, 0.2)', borderColor: '#007AFF' }]
             },
-            options: { responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { display: false, backdropColor: 'transparent' } } } }
+            options: { responsive: true, maintainAspectRatio: false, scales: { r: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { display: false } } } }
         });
-
-        function updatePlayerChart() {
-            const val = document.getElementById('playerSelect').value;
-            const newStats = playerData[val];
-            playerChart.data.datasets[0].data = [newStats.pts, newStats.reb, newStats.ast, newStats.blk];
-            playerChart.data.datasets[0].label = document.getElementById('playerSelect').options[document.getElementById('playerSelect').selectedIndex].text;
-            playerChart.update();
+        function updateNbaPlayer() {
+            nbaRadar.data.datasets[0].data = nbaPlayerData[document.getElementById('playerSelect').value];
+            nbaRadar.update();
         }
 
-        function toggleGame(card) { card.classList.toggle('active'); }
+        /* --- DASHBOARD 02: GOPUFF --- */
+        new Chart(document.getElementById('gopuffLine'), {
+            type: 'line',
+            data: {
+                labels: ['9PM', '10PM', '11PM', '12AM', '1AM', '2AM', '3AM'],
+                datasets: [{ label: 'Orders', data: [450, 1200, 2400, 3100, 2800, 1500, 400], borderColor: '#007AFF', backgroundColor: 'rgba(0,122,255,0.1)', fill: true, tension: 0.4 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
 
+        new Chart(document.getElementById('gopuffDonut'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Gen Z', 'Millennials', 'Gamer Subculture', 'Night Shift'],
+                datasets: [{ data: [45, 30, 15, 10], backgroundColor: ['#007AFF', '#0055BB', '#003388', '#111'], borderColor: 'transparent' }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
+        });
+
+        new Chart(document.getElementById('gopuffBar'), {
+            type: 'bar',
+            data: {
+                labels: ['Instagram', 'TikTok', 'Push', 'App'],
+                datasets: [{ label: 'ROAS', data: [5.2, 7.8, 8.4, 6.1], backgroundColor: '#007AFF' }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -338,11 +340,11 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = "0";
-            section.style.transform = "translateY(30px)";
-            section.style.transition = "1s cubic-bezier(0.23, 1, 0.32, 1)";
-            observer.observe(section);
+        document.querySelectorAll('section, .kpi-card, .chart-container').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "1s ease-out";
+            observer.observe(el);
         });
     </script>
 </body>
