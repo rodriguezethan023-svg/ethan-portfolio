@@ -30,13 +30,64 @@
         #cursor { position: fixed; width: 10px; height: 10px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s; }
         #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out, background 0.3s; }
 
-        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 1000; }
-        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
+        /* --- NAVIGATION --- */
+        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 2000; }
+        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; z-index: 2100; }
         .nav-logo span { color: var(--accent); }
+        
+        /* Desktop Links */
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); font-weight: 500; }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
+        /* Hamburger Menu Button */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            z-index: 2100;
+            padding: 10px;
+        }
+        .menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: #fff;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        /* Mobile Overlay */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            transition: var(--transition);
+            z-index: 2050;
+        }
+        .mobile-nav.active { right: 0; }
+        .mobile-nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            transition: 0.3s;
+        }
+        .mobile-nav a:hover { color: var(--accent); }
+
+        /* --- HERO SECTION --- */
         .hero { height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 0 5% 0 10%; position: relative; }
         .hero-eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
         .hero-title { font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; letter-spacing: -3px; margin-bottom: 2rem; }
@@ -53,16 +104,9 @@
         .image-reveal:hover .hero-photo { filter: grayscale(0); transform: scale(1.05); }
 
         /* MARQUEE STYLES */
-        .marquee {
-            padding: 3.5rem 0; background: #000; border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; display: flex;
-        }
+        .marquee { padding: 3.5rem 0; background: #000; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; display: flex; }
         .marquee-track { display: flex; white-space: nowrap; animation: scroll 30s linear infinite; }
-        .marquee-track h2 {
-            font-size: 3.5rem; font-weight: 900; text-transform: uppercase;
-            padding: 0 4rem; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.25);
-            letter-spacing: -1px;
-        }
+        .marquee-track h2 { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; padding: 0 4rem; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.25); letter-spacing: -1px; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* SECTION DIVIDER */
@@ -70,6 +114,7 @@
         .divider-line { height: 1px; background: rgba(255,255,255,0.08); width: 100%; position: relative; }
         .divider-label { position: absolute; top: -10px; left: 0; background: var(--bg); padding-right: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; }
 
+        /* HUB */
         .hub { padding: 80px 5% 120px; }
         .hub-header { margin-bottom: 4rem; text-align: center; }
         .hub-title { font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: -2px; font-weight: 900; }
@@ -83,13 +128,27 @@
 
         .footer { padding: 3rem 5%; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
 
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 1024px) {
-            .hero, .hub-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero { grid-template-columns: 1fr; text-align: center; height: auto; padding: 120px 5% 60px; }
             .hero-visual { display: none; }
+            .hub-grid { grid-template-columns: 1fr; }
             .btn-group { justify-content: center; }
             .hub-card { height: 350px; }
             .cat-name { font-size: 3rem; }
             .marquee-track h2 { font-size: 2.5rem; padding: 0 2rem; }
+        }
+
+        @media (max-width: 767px) {
+            .nav-links { display: none; }
+            .menu-btn { display: flex; }
+            
+            /* Animation for active menu button */
+            .menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-btn.active span:nth-child(2) { opacity: 0; }
+            .menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
+            body.no-scroll { overflow: hidden; }
         }
     </style>
 </head>
@@ -101,13 +160,30 @@
 
     <nav class="nav">
         <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
+        
+        <!-- Desktop Navigation (Hidden on Mobile) -->
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="#work">Portfolio</a></li>
             <li><a href="contact.html">Connect</a></li>
         </ul>
+
+        <!-- Mobile Menu Trigger -->
+        <button class="menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Navigation Panel -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="#work" onclick="toggleMenu()">Portfolio</a>
+        <a href="contact.html">Connect</a>
+    </div>
 
     <section class="hero">
         <div class="hero-content">
@@ -126,7 +202,6 @@
         </div>
     </section>
 
-    <!-- RESTORED MARQUEE SECTION -->
     <div class="marquee">
         <div class="marquee-track">
             <h2>Brand Identity</h2>
@@ -135,7 +210,6 @@
             <h2>Marketing</h2>
             <h2>Creative Strategy</h2>
             <h2>Visual Storytelling</h2>
-            <!-- Duplicated for Infinite Effect -->
             <h2>Brand Identity</h2>
             <h2>Photography</h2>
             <h2>Data Visualization</h2>
@@ -185,6 +259,20 @@
     </footer>
 
     <script>
+        /* --- MOBILE MENU LOGIC --- */
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
+
+        function toggleMenu() {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.classList.toggle('no-scroll');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        /* --- CURSOR LOGIC --- */
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         document.addEventListener('mousemove', (e) => {
