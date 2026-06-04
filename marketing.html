@@ -71,7 +71,7 @@
 
         /* --- HERO --- */
         .hero {
-            height: 70vh; display: flex; flex-direction: column; justify-content: center;
+            height: 60vh; display: flex; flex-direction: column; justify-content: center;
             padding: 0 10%; border-bottom: 1px solid var(--border); position: relative;
         }
         .hero-title {
@@ -85,91 +85,98 @@
         }
 
         /* --- TOOLS SECTION --- */
-        .tools-section { padding: 60px 10%; border-bottom: 1px solid var(--border); background: #080808; }
+        .tools-section { padding: 80px 10%; border-bottom: 1px solid var(--border); background: #080808; }
         .tools-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 1.5rem; margin-top: 30px; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 2rem; margin-top: 40px; 
         }
         .tool-card {
-            background: #0a0a0a; border: 1px solid var(--border); padding: 25px;
-            border-radius: 20px; text-align: center; transition: var(--transition);
+            background: #0a0a0a; border: 1px solid var(--border); padding: 40px 20px;
+            border-radius: 24px; text-align: center; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .tool-card img { width: 45px; height: 45px; margin-bottom: 15px; filter: grayscale(1); transition: 0.5s; }
-        .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .tool-card:hover img { filter: grayscale(0); }
-        .tool-name { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; }
+        .tool-card img { width: 50px; height: 50px; margin-bottom: 20px; filter: grayscale(1) brightness(0.8); transition: 0.5s var(--transition); }
+        .tool-card:hover { border-color: var(--accent); transform: translateY(-10px); background: #0f0f0f; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .tool-card:hover img { filter: grayscale(0) brightness(1); transform: scale(1.1); }
+        .tool-name { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); transition: 0.3s; }
+        .tool-card:hover .tool-name { color: white; }
 
         /* --- CASE STUDY MODULES --- */
         .case-study { padding: 120px 10%; border-bottom: 1px solid var(--border); }
         .section-label { 
             font-family: var(--font-mono); color: var(--accent); 
             font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; 
-            margin-bottom: 2rem; display: block; 
+            margin-bottom: 3rem; display: block; 
         }
 
-        .proj-header { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; margin-bottom: 80px; }
-        .proj-title { font-size: 4rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; line-height: 1; }
+        .proj-header { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem; margin-bottom: 80px; }
+        .proj-title { font-size: 4.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 25px; line-height: 0.9; }
         .proj-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; }
 
         .proj-brief-box {
-            background: #0a0a0a; border: 1px solid var(--border); padding: 40px; border-radius: 20px;
+            background: #0a0a0a; border: 1px solid var(--border); padding: 50px; border-radius: 28px; height: fit-content;
         }
-        .brief-item { margin-bottom: 25px; }
+        .brief-item { margin-bottom: 30px; }
         .brief-item label { 
             display: block; font-family: var(--font-mono); font-size: 0.6rem; 
-            color: var(--accent); text-transform: uppercase; margin-bottom: 8px;
+            color: var(--accent); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 2px;
         }
-        .brief-item p { font-size: 0.9rem; font-weight: 500; }
+        .brief-item p { font-size: 0.9rem; font-weight: 500; color: white; }
 
-        /* Impact Nodes */
-        .impact-grid { 
-            display: grid; grid-template-columns: repeat(4, 1fr); 
-            gap: 20px; margin: 60px 0;
-            padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-        }
-        .impact-node { text-align: center; border-right: 1px solid var(--border); }
-        .impact-node:last-child { border-right: none; }
-        .impact-val { font-family: var(--font-mono); font-size: 2.5rem; font-weight: 700; color: var(--accent); display: block; }
-        .impact-lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; display: block; }
+        /* Content Blocks */
+        .content-block { margin-bottom: 60px; max-width: 900px; }
+        .content-block h3 { font-size: 1.8rem; text-transform: uppercase; margin-bottom: 20px; color: white; }
+        .content-block p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
 
-        /* Color Palette Display */
-        .palette-row { display: flex; gap: 15px; margin: 40px 0; }
-        .swatch-box { text-align: center; }
-        .swatch { 
-            width: 70px; height: 70px; border-radius: 12px; border: 1px solid var(--border);
-            margin-bottom: 10px; transition: var(--transition);
-        }
-        .swatch:hover { transform: translateY(-8px); border-color: var(--accent); }
-        .swatch-hex { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
+        .skills-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
+        .skill-node { font-family: var(--font-mono); font-size: 0.65rem; color: white; text-transform: uppercase; letter-spacing: 1px; border-left: 2px solid var(--accent); padding-left: 15px; }
 
-        /* Typography Terminal */
-        .type-terminal {
-            background: #000; border: 1px solid var(--border); border-radius: 24px;
-            padding: 50px; margin: 60px 0; position: relative;
-        }
-        .type-terminal::after { content: 'STRATEGY_FONT_STACK'; position: absolute; top: 15px; right: 20px; font-size: 0.5rem; color: var(--accent); opacity: 0.5; }
-        .type-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px; }
-        .font-display { font-size: 3rem; font-weight: 900; text-transform: uppercase; }
-        .font-utility { font-size: 1.4rem; font-weight: 300; font-family: var(--font-head); }
-
-        /* Immersive Gallery */
-        .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; margin-top: 80px; }
-        .gallery-item { 
-            background: #080808; border: 1px solid var(--border); border-radius: 20px;
-            overflow: hidden; position: relative;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition); }
-        .gallery-item:hover img { opacity: 1; transform: scale(1.03); }
+        /* --- CAMPAIGN GALLERY --- */
+        .campaign-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 80px; }
         
-        .item-main { grid-column: 1 / 9; aspect-ratio: 16/9; }
-        .item-side-1 { grid-column: 9 / 13; aspect-ratio: 4/5; }
-        .item-side-2 { grid-column: 1 / 6; aspect-ratio: 1/1; margin-top: -60px; z-index: 5; }
-        .item-side-3 { grid-column: 6 / 13; aspect-ratio: 16/7; }
+        .asset-container { display: flex; flex-direction: column; gap: 20px; }
+        .asset-card { 
+            background: #0a0a0a; border: 1px solid var(--border); border-radius: 24px;
+            overflow: hidden; position: relative; transition: var(--transition);
+            aspect-ratio: 16/11; display: flex; align-items: center; justify-content: center;
+        }
+        .asset-card img { width: 100%; height: 100%; object-fit: cover; transition: 1.2s var(--transition); }
+        .asset-card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .asset-card:hover img { transform: scale(1.05); }
+        
+        .asset-label {
+            position: absolute; top: 20px; left: 20px; background: var(--accent);
+            padding: 8px 15px; border-radius: 8px;
+            font-family: var(--font-mono); font-size: 0.6rem; color: white; text-transform: uppercase; letter-spacing: 2px;
+            z-index: 5; font-weight: 700;
+        }
+        
+        .asset-meta { margin-top: 10px; }
+        .asset-meta h4 { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
+        .asset-meta p { font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- LIGHTBOX SYSTEM --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5,5,5,0.95); backdrop-filter: blur(20px);
+            display: none; justify-content: center; align-items: center;
+            z-index: 10000;
+        }
+        #lightbox img { 
+            max-width: 90%; max-height: 85vh; 
+            border-radius: 12px; border: 1px solid var(--border);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+        }
+        .lightbox-close {
+            position: absolute; top: 40px; right: 40px;
+            font-family: var(--font-mono); color: white; text-transform: uppercase;
+            letter-spacing: 4px; font-size: 0.8rem;
+        }
 
         /* --- CTA --- */
-        .cta { padding: 150px 10%; text-align: center; }
+        .cta { padding: 150px 10%; text-align: center; border-top: 1px solid var(--border); }
         .btn-primary { 
-            padding: 1.2rem 3rem; background: var(--accent); color: white; border-radius: 100px;
+            padding: 1.2rem 3.5rem; background: var(--accent); color: white; border-radius: 100px;
             text-decoration: none; font-family: var(--font-mono); font-weight: 700;
             display: inline-block; transition: var(--transition); text-transform: uppercase; letter-spacing: 3px;
         }
@@ -183,10 +190,9 @@
         }
 
         @media (max-width: 1024px) {
-            .proj-header, .impact-grid, .gallery-grid { grid-template-columns: 1fr; }
-            .item-side-2 { margin-top: 0; }
+            .proj-header, .campaign-gallery, .tools-grid { grid-template-columns: 1fr; }
             .hero, .case-study { padding: 80px 5%; }
-            .tools-grid { grid-template-columns: repeat(2, 1fr); }
+            .proj-title { font-size: 3rem; }
         }
     </style>
 </head>
@@ -196,11 +202,16 @@
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
 
+    <div id="lightbox">
+        <span class="lightbox-close">Close // [ESC]</span>
+        <img id="lightbox-img" src="" alt="Campaign Asset View">
+    </div>
+
     <nav class="nav">
         <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="index.html#work" class="active">Portfolio</a></li>
             <li><a href="mailto:rodriguezethan023@gmail.com">Connect</a></li>
         </ul>
@@ -213,106 +224,108 @@
 
     <!-- TOOLS SECTION -->
     <section class="tools-section">
-        <span class="section-label">Creative Stack</span>
+        <span class="section-label">Tools Used</span>
         <div class="tools-grid">
             <div class="tool-card">
                 <img src="https://img.icons8.com/color/96/canva.png" alt="Canva">
-                <div class="tool-name">Canva Pro</div>
-            </div>
-            <div class="tool-card">
-                <img src="https://img.icons8.com/color/96/adobe-photoshop--v1.png" alt="Photoshop">
-                <div class="tool-name">Photoshop</div>
+                <span class="tool-name">Canva</span>
             </div>
             <div class="tool-card">
                 <img src="https://img.icons8.com/color/96/adobe-illustrator--v1.png" alt="Illustrator">
-                <div class="tool-name">Illustrator</div>
+                <span class="tool-name">Adobe Illustrator</span>
             </div>
             <div class="tool-card">
-                <img src="https://img.icons8.com/color/96/linkedin.png" alt="LinkedIn">
-                <div class="tool-name">LinkedIn / Social</div>
+                <img src="https://img.icons8.com/color/96/adobe-photoshop--v1.png" alt="Photoshop">
+                <span class="tool-name">Adobe Photoshop</span>
             </div>
         </div>
     </section>
 
-    <!-- CASE STUDY: CPS ENERGY NEXTGEN -->
-    <section class="case-study" id="cps-energy">
-        <span class="section-label">Archive_03 // Internal Branding & Campaigns</span>
+    <!-- CASE STUDY: LATE NIGHT LEGENDS -->
+    <section class="case-study" id="late-night-legends">
+        <span class="section-label">Archive_03 // Creative Strategy & Ad Campaigns</span>
         
         <div class="proj-header">
             <div>
-                <h2 class="proj-title">CPS Energy<br>NextGen Campaigns</h2>
+                <h2 class="proj-title">Late Night<br>Legends</h2>
                 <p class="proj-desc">
-                    I led the visual communication strategy for CPS Energy’s NextGen employee group, focusing on transforming corporate messaging into engaging, high-impact narratives. This involved a cohesive ecosystem of event branding, editorial newsletters, and leadership communications designed to drive internal engagement.
+                    Late Night Legends is a conceptual marketing campaign developed for Gopuff to increase late-night ordering behavior among college students, gamers, night shift workers, and young professionals.
                 </p>
-                <div class="palette-row">
-                    <div class="swatch-box"><div class="swatch" style="background: #FF6A2B;"></div><span class="swatch-hex">#FF6A2B</span></div>
-                    <div class="swatch-box"><div class="swatch" style="background: #FF8C52;"></div><span class="swatch-hex">#FF8C52</span></div>
-                    <div class="swatch-box"><div class="swatch" style="background: #0D1F4A;"></div><span class="swatch-hex">#0D1F4A</span></div>
+                
+                <div class="content-block">
+                    <h3>The Challenge</h3>
+                    <p>When traditional retailers close their doors, late-night demographics like gamers and shift workers are just beginning their peak hours. The challenge was to position Gopuff as the essential 'always-awake' partner for these overlooked timeframes.</p>
+                </div>
+
+                <div class="content-block">
+                    <h3>Creative Strategy</h3>
+                    <p>The campaign centers on the moment of friction when hunger strikes unexpectedly at 2 AM. By utilizing high-contrast, 'neon-noir' visual storytelling, we positioned Gopuff as the Hero of Convenience.</p>
+                </div>
+
+                <div class="content-block">
+                    <h3>Skills Demonstrated</h3>
+                    <div class="skills-list">
+                        <div class="skill-node">Campaign Development</div>
+                        <div class="skill-node">Creative Strategy</div>
+                        <div class="skill-node">Brand Storytelling</div>
+                        <div class="skill-node">Audience Targeting</div>
+                    </div>
                 </div>
             </div>
             
             <div class="proj-brief-box">
-                <div class="brief-item"><label>Primary Objective</label><p>Employee Engagement & Brand Awareness</p></div>
-                <div class="brief-item"><label>Strategy</label><p>Visual Hierarchy & Narrative Storytelling</p></div>
-                <div class="brief-item"><label>Sector</label><p>Corporate Communications</p></div>
+                <div class="brief-item"><label>Client</label><p>Gopuff (Conceptual)</p></div>
+                <div class="brief-item"><label>Role</label><p>Creative Director<br>Marketing Strategist</p></div>
+                <div class="brief-item"><label>Category</label><p>Social Media Advertising</p></div>
+                <div class="brief-item"><label>Objective</label><p>Increase Late-Night Conversion</p></div>
             </div>
         </div>
 
-        <div class="impact-grid">
-            <div class="impact-node"><span class="impact-val">3</span><span class="impact-lbl">Major Campaigns</span></div>
-            <div class="impact-node"><span class="impact-val">2</span><span class="impact-lbl">Editorial Layouts</span></div>
-            <div class="impact-node"><span class="impact-val">100%</span><span class="impact-lbl">Internal Approval</span></div>
-            <div class="impact-node"><span class="impact-val">SA</span><span class="impact-lbl">San Antonio Head</span></div>
-        </div>
-
-        <div class="type-terminal">
-            <div class="type-row">
-                <label class="section-label" style="font-size:0.5rem;">Campaign Headlines</label>
-                <span class="font-display">Bebas Neue</span>
-            </div>
-            <div class="type-row">
-                <label class="section-label" style="font-size:0.5rem;">Body Hierarchy</label>
-                <span class="font-utility">DM Sans Regular</span>
-            </div>
-            <p style="font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;">
-                // RATIONALE: High-Impact Typography for Visibility across Corporate Channels.
-            </p>
-        </div>
-
-        <div class="gallery-grid">
-            <div class="gallery-item item-main">
-                <img src="https://i.ibb.co/gGXXr26/nextgen-bowling-flyer.png" alt="Bowling Campaign">
-            </div>
-            <div class="gallery-item item-side-1">
-                <img src="https://i.ibb.co/2D6z4XH/Next-Gen-Newsletter-Cover-Page.jpg" alt="Newsletter Cover">
-            </div>
-            <div class="gallery-item item-side-2">
-                <img src="https://i.ibb.co/7dNVZDNP/Next-Gen-Social-Chair-s-Message.jpg" alt="Leadership Message">
-            </div>
-            <div class="gallery-item item-side-3" style="display: flex; align-items: center; justify-content: center; background: #0a0a0a;">
-                <div style="padding: 40px; text-align: center;">
-                    <span class="section-label" style="font-size: 0.5rem;">Messaging Strategy</span>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.8;">
-                        By utilizing high-contrast visuals and editorial-style layouts, I moved NextGen communications away from standard corporate templates to a "Brand First" approach, resulting in higher event attendance and increased digital newsletter readership.
-                    </p>
+        <span class="section-label">Campaign Assets</span>
+        <div class="campaign-gallery">
+            
+            <!-- ASSET 01: SMARTPHONE STORY -->
+            <div class="asset-container">
+                <div class="asset-card" data-full="https://i.ibb.co/6RgFJJFF/Chat-GPT-Image-Jun-4-2026-11-10-07-AM.png">
+                    <span class="asset-label">INSTAGRAM STORY AD</span>
+                    <img src="https://i.ibb.co/6RgFJJFF/Chat-GPT-Image-Jun-4-2026-11-10-07-AM.png" alt="Gopuff Instagram Story Advertisement">
+                </div>
+                <div class="asset-meta">
+                    <h4>Promotional Flyer</h4>
+                    <p>Print & Digital // 15% Off Offer</p>
                 </div>
             </div>
+
+            <!-- ASSET 02: LANDSCAPE FLYER -->
+            <div class="asset-container">
+                <div class="asset-card" data-full="https://i.ibb.co/4RN9htQb/Chat-GPT-Image-Jun-4-2026-11-09-58-AM.png">
+                    <span class="asset-label">PROMOTIONAL FLYER</span>
+                    <img src="https://i.ibb.co/4RN9htQb/Chat-GPT-Image-Jun-4-2026-11-09-58-AM.png" alt="Late Night Legends Promotional Flyer">
+                </div>
+                <div class="asset-meta">
+                    <h4>Instagram Story Advertisement</h4>
+                    <p>Mobile Creative // Social Feed</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section class="cta">
-        <h2>Need A Campaign That<br><span>Actually Moves People?</span></h2>
+        <h2>Need A Campaign That<br><span>Actually Scales?</span></h2>
         <a href="mailto:rodriguezethan023@gmail.com" class="btn-primary">Initiate Strategy</a>
     </section>
 
     <footer class="footer">
         <div>© 2026 Archive // Ethan Rodriguez</div>
-        <div>Based in Texas // Available Worldwide</div>
+        <div>San Antonio, Texas // Available Worldwide</div>
     </footer>
 
     <script>
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
 
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
@@ -321,7 +334,27 @@
             follower.style.transform = `translate(${x - 20}px, ${y - 20}px)`;
         });
 
-        const activeElements = document.querySelectorAll('a, .tool-card, .gallery-item, .swatch');
+        // Lightbox Logic
+        document.querySelectorAll('.asset-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const fullSrc = card.getAttribute('data-full');
+                lbImg.src = fullSrc;
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeLightbox = () => {
+            lb.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+
+        lb.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "Escape") closeLightbox();
+        });
+
+        const activeElements = document.querySelectorAll('a, .tool-card, .asset-card');
         activeElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 follower.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px) scale(1.8)`;
