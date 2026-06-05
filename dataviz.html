@@ -104,22 +104,17 @@
 
         @media (max-width: 1100px) { .proj-header, .kpi-grid, .dashboard-row, .tools-grid { grid-template-columns: 1fr; } .hero, .case-study { padding: 60px 5%; } }
     </style>
+
+<link rel="stylesheet" href="nav.css">
+
 </head>
 <body>
 
+    <div id="nav-placeholder"></div>
     <div class="ambient-glow"></div>
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
 
-    <nav class="nav">
-        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="index.html#work" class="active">Portfolio</a></li>
-            <li><a href="mailto:rodriguezethan023@gmail.com">Connect</a></li>
-        </ul>
-    </nav>
 
     <header class="hero">
         <span class="hero-tagline">Data Visualization Archive</span>
@@ -347,5 +342,6 @@
             observer.observe(el);
         });
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
