@@ -94,21 +94,16 @@
             .album-card { grid-template-columns: 1fr; gap: 2rem; } 
         }
     </style>
+    <link rel="stylesheet" href="nav.css">
+
 </head>
 <body>
 
+    <div id="nav-placeholder"></div>
     <div class="ambient-glow"></div>
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
 
-    <nav class="nav">
-        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="photography.html" class="active">Archive</a></li>
-            <li><a href="contact.html">Connect</a></li>
-        </ul>
-    </nav>
 
     <header class="archive-hero">
         <span class="hero-tag">System // Photography</span>
@@ -164,5 +159,6 @@
 
         document.querySelectorAll('.album-card').forEach(card => observer.observe(card));
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
