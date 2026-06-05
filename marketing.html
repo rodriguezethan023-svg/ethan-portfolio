@@ -195,9 +195,12 @@
             .proj-title { font-size: 3rem; }
         }
     </style>
+    <link rel="stylesheet" href="nav.css">
+
 </head>
 <body>
 
+    <div id="nav-placeholder"></div>
     <div class="ambient-glow"></div>
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
@@ -207,15 +210,6 @@
         <img id="lightbox-img" src="" alt="Campaign Asset View">
     </div>
 
-    <nav class="nav">
-        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="index.html#work" class="active">Portfolio</a></li>
-            <li><a href="mailto:rodriguezethan023@gmail.com">Connect</a></li>
-        </ul>
-    </nav>
 
     <header class="hero">
         <span class="hero-tagline">Discipline // 03</span>
@@ -382,5 +376,6 @@
             observer.observe(section);
         });
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
