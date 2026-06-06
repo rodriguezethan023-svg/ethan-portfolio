@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography Archive // Ethan Rodriguez</title>
     
+    <!-- Shared Navigation Styles -->
+    <link rel="stylesheet" href="nav.css">
+
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,14 +35,6 @@
         #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out; }
         .ambient-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%); pointer-events: none; z-index: -1; }
 
-        /* --- NAVIGATION --- */
-        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
-        .nav-logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-
         /* --- HERO --- */
         .archive-hero { padding: 160px 10% 80px; border-bottom: 1px solid var(--border); }
         .hero-tag { font-family: var(--font-mono); color: var(--accent); letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
@@ -55,16 +50,22 @@
             transition: var(--transition); opacity: 0; transform: translateY(40px);
         }
 
+        /* Fixed Aspect Ratio for Consistency across all projects */
         .album-image-wrapper { 
             position: relative; border-radius: 20px; overflow: hidden; 
-            border: 1px solid var(--border); aspect-ratio: 16/9; background: #0a0a0a;
+            border: 1px solid var(--border); aspect-ratio: 16 / 9; background: #0a0a0a;
             transition: var(--transition);
         }
         
         .album-image-wrapper img { 
             width: 100%; height: 100%; object-fit: cover; 
-            filter: grayscale(1); /* Default State: B&W */
+            filter: grayscale(1); /* Default B&W state */
             transition: filter 1s ease, transform 1s ease;
+        }
+
+        /* Specific Compositional adjustment for the wedding preview image */
+        .wedding-preview-focus {
+            object-position: center 30%;
         }
 
         .album-info .category { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
@@ -77,25 +78,24 @@
         /* --- HOVER STATES --- */
         .album-card:hover .album-image-wrapper img { 
             filter: grayscale(0); /* Transition to Full Color */
-            transform: scale(1.03); /* Subtle Zoom */
+            transform: scale(1.03); 
         }
         
         .album-card:hover .album-image-wrapper { 
             border-color: var(--accent); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow); /* Elevation */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow); 
             transform: translateY(-5px);
         }
 
         .album-card:hover .view-link::after { transform: translateX(10px); }
 
+        /* Pending State */
         .album-card.upcoming { opacity: 0.3; pointer-events: none; }
 
         @media (max-width: 1024px) { 
             .album-card { grid-template-columns: 1fr; gap: 2rem; } 
         }
     </style>
-    <link rel="stylesheet" href="nav.css">
-
 </head>
 <body>
 
@@ -103,7 +103,6 @@
     <div class="ambient-glow"></div>
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
-
 
     <header class="archive-hero">
         <span class="hero-tag">System // Photography</span>
@@ -114,7 +113,7 @@
         <!-- STEVENS BASKETBALL CAMP ALBUM -->
         <a href="stevens-basketball.html" class="album-card">
             <div class="album-image-wrapper">
-                <img src="https://i.ibb.co/Vpj38f0J/IMG-4235.jpg" alt="Stevens Basketball Camp Preview">
+                <img src="https://i.ibb.co/Ps2GZPxt/image0-3.jpg" alt="Stevens Basketball Camp Preview">
             </div>
             <div class="album-info">
                 <span class="category">Sports Photography</span>
@@ -124,22 +123,35 @@
             </div>
         </a>
 
+        <!-- GETTING MARRIED ALBUM (LANDSCAPE 16:9 MATCH) -->
+        <a href="getting-married.html" class="album-card">
+            <div class="album-image-wrapper">
+                <img src="https://i.ibb.co/dJJkVqnV/IMG-3402.jpg" alt="Getting Married Preview" class="wedding-preview-focus">
+            </div>
+            <div class="album-info">
+                <span class="category">Wedding Photography</span>
+                <h3>Getting Married</h3>
+                <p>Narrative documentation capturing intimate moments and celebrations through a natural editorial lens.</p>
+                <div class="view-link">View Gallery</div>
+            </div>
+        </a>
+
         <!-- UPCOMING PLACEHOLDER -->
         <div class="album-card upcoming">
             <div class="album-image-wrapper">
-                <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#222; font-family:var(--font-mono); font-size:0.7rem;">02 // ARCHIVE_PENDING</div>
+                <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#222; font-family:var(--font-mono); font-size:0.7rem;">03 // NEXTGEN_DOC_PENDING</div>
             </div>
             <div class="album-info">
                 <span class="category">Event Photography</span>
-                <h3>Getting Married</h3>
-                <p>Narrative documentation capturing intimate moments and celebrations.</p>
+                <h3>NextGen Events</h3>
+                <p>Capturing the movement and energy of community leadership initiatives.</p>
                 <div class="view-link">Locked</div>
             </div>
         </div>
     </section>
 
     <script>
-        // Cursor Logic
+        // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         document.addEventListener('mousemove', (e) => {
@@ -159,6 +171,8 @@
 
         document.querySelectorAll('.album-card').forEach(card => observer.observe(card));
     </script>
+    
+    <!-- Shared Navigation Scripts -->
     <script src="nav.js"></script>
 </body>
 </html>
