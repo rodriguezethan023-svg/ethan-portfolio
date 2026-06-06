@@ -93,7 +93,7 @@
             margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border);
         }
         .intel-item label { display: block; font-family: var(--font-mono); font-size: 0.55rem; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 2px; }
-        .intel-item p { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .intel-item p { font-size: 1rem; font-weight: 500; color: #fff; }
 
         .logo-terminal {
             background: rgba(255, 255, 255, 0.015);
@@ -117,8 +117,8 @@
         .variation label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 2px; font-weight: 600; }
 
         .process-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin: 40px 0; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .step h4 { font-size: 1rem; text-transform: uppercase; margin-bottom: 10px; }
-        .step p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+        .step h4 { font-size:  1.3rem; text-transform: uppercase; margin-bottom: 10px; }
+        .step p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
 
         .palette-system { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 30px 0 50px; }
         .swatch-guideline { background: #0a0a0a; border: 1px solid var(--border); padding: 15px; border-radius: 16px; transition: var(--transition); }
@@ -131,13 +131,13 @@
         .font-info h3 { font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; }
         .font-info label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; display: block; margin-top: 5px; opacity: 0.8; }
         .font-demo h4 { font-size: 1.8rem; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
-        .font-demo p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .font-demo p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
 
         .tools-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 40px 0; }
-        .tool-node { background: #0a0a0a; border: 1px solid var(--border); padding: 25px; border-radius: 16px; text-align: center; transition: var(--transition); }
+        .tool-node { background: #0a0a0a; border: 1px solid var(--border); padding: 20px; border-radius: 16px; text-align: center; transition: var(--transition); }
         .tool-node img { width: 40px; height: 40px; margin-bottom: 12px; }
 
-        .mockup-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 60px; }
+        .mockup-showcase {display: grid;grid-template-columns: repeat(2, minmax(0, 550px)); justify-content: center; gap: 30px; margin-top: 60px;}
         .mock-frame { background: #080808; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; transition: var(--transition); }
         .mock-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: 1.2s var(--transition); }
         .mock-frame:hover { border-color: var(--accent); transform: scale(1.02); }
@@ -161,14 +161,82 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-        @media (max-width: 767px) {
-        .footer {
+      @media (max-width: 767px) {
+
+    .hero {
+        height: auto;
+        padding: 140px 6% 60px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        letter-spacing: -2px;
+        line-height: 0.95;
+    }
+
+    .case-study {
+        padding: 50px 6%;
+    }
+
+    .intel-grid,
+    .logo-variations,
+    .process-row,
+    .type-grid,
+    .mockup-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .logo-terminal,
+    .type-terminal {
+        padding: 30px 20px;
+    }
+
+    .logo-main-visual {
+        max-width: 100%;
+    }
+
+    .variation {
+        margin-bottom: 20px;
+    }
+
+    .variation img {
+        max-width: 180px;
+        height: auto;
+    }
+
+    .process-row {
+        gap: 40px;
+    }
+
+    .mock-frame {
+        aspect-ratio: auto;
+    }
+
+    .case-study h2 {
+        font-size: 2rem !important;
+        line-height: 1.1;
+    }
+
+    .intel-item p,
+    .step p {
+        font-size: 0.95rem;
+    }
+
+    .tools-row {
+        grid-template-columns: 1fr;
+    }
+
+    .palette-system {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
         font-size: 0.65rem;
     }
-        }
+}
     </style>
     <link rel="stylesheet" href="nav.css">
 </head>
@@ -193,7 +261,7 @@
             <div class="intel-item"><label>Deliverables</label><p>Logo Design, Brand System, Apparel Concepts</p></div>
             <div class="intel-item"><label>Tools</label><p>Illustrator, Photoshop, Canva</p></div>
         </div>
-        <h2 style="font-size: 3rem; text-transform: uppercase; margin-bottom: 15px;">Anime Paradise</h2>
+        <h2 style="font-size: 4rem; text-transform: uppercase; margin-bottom: 15px;">Anime Paradise</h2>
         <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 800px;">
             Building an identity that bridges the gap between street culture and premium retail aesthetics. Anime Paradise focuses on high-energy visual systems that scale across digital and physical touchpoints.
         </p>
@@ -256,7 +324,7 @@
             <div class="intel-item"><label style="color:#7ED957">Deliverables</label><p>Crest Design, Uniform Branding, Stadium Graphics</p></div>
             <div class="intel-item"><label style="color:#7ED957">Tools</label><p>Illustrator, Photoshop, Canva</p></div>
         </div>
-        <h2 style="font-size: 3rem; text-transform: uppercase; margin-bottom: 15px;">Infinity Falcons</h2>
+        <h2 style="font-size: 4rem; text-transform: uppercase; margin-bottom: 15px;">Infinity Falcons</h2>
         <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 800px;">
             Developing a modern sports identity designed to inspire confidence, strengthen team culture, and create a lasting visual presence.
         </p>
@@ -319,8 +387,8 @@
             <div class="intel-item"><label>Deliverables</label><p>Logo Design, Stationery, Studio Signage</p></div>
             <div class="intel-item"><label>Tools</label><p>Illustrator, Photoshop, Canva</p></div>
         </div>
-        <h2 style="font-size: 3rem; text-transform: uppercase; margin-bottom: 15px;">EB Legacy Studios</h2>
-        <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 800px;">
+        <h2 style="font-size: 4rem; text-transform: uppercase; margin-bottom: 15px;">EB Legacy Studios</h2>
+        <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; max-width: 800px;">
             Developing a sophisticated, high-contrast visual identity for a professional photography and media production studio.
         </p>
 
