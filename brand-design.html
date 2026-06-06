@@ -148,12 +148,26 @@
         .btn-primary { padding: 1rem 3rem; background: var(--accent); color: white; border-radius: 100px; text-decoration: none; font-family: var(--font-mono); font-weight: 700; display: inline-block; transition: var(--transition); text-transform: uppercase; letter-spacing: 2px; }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--accent-glow); }
 
-        .footer { padding: 3rem 10%; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
-
-        @media (max-width: 1024px) {
-            .intel-grid, .logo-variations, .process-row, .type-grid, .mockup-showcase, .tools-row, .palette-system { grid-template-columns: 1fr; }
-            .hero, .case-study { padding: 60px 5%; }
-            .variation img { max-width: 180px; height: 180px; }
+         .footer {
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        @media (max-width: 767px) {
+        .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.65rem;
+    }
         }
     </style>
     <link rel="stylesheet" href="nav.css">
@@ -367,10 +381,11 @@
         <a href="contact.html" class="btn-primary">Let's Work Together</a>
     </section>
 
-    <footer class="footer">
-        <div>© 2026 Archive // Ethan Rodriguez</div>
-        <div>Based in Texas // Worldwide Sync</div>
-    </footer>
+   <footer class="footer">
+    <div>© 2026 Ethan Rodriguez</div>
+    <div>Graphic Designer • Developer • Visual Storyteller</div>
+    <div>San Antonio, TX</div>
+</footer>
 
     <script>
         const cursor = document.getElementById('cursor');
