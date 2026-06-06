@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Married // Ethan Rodriguez Photography</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --accent: #007AFF; 
+            --accent-glow: rgba(0, 122, 255, 0.3);
+            --text-main: #FFFFFF;
+            --text-muted: #888888;
+            --font-head: 'Outfit', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-head); overflow-x: hidden; line-height: 1.4; }
+
+        /* --- SYSTEM OVERLAYS --- */
+        #cursor { position: fixed; width: 8px; height: 8px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s; }
+        #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out; }
+        .ambient-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%); pointer-events: none; z-index: -1; }
+
+        /* --- NAVIGATION (Synced exactly with Basketball Page) --- */
+        .nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        .nav-logo { font-weight: 700; font-size: 1.4rem; color: white; text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .back-btn { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
+        .back-btn:hover { color: var(--accent); }
+
+        /* --- CASE STUDY HEADER --- */
+        .case-header { padding: 160px 10% 60px; border-bottom: 1px solid var(--border); }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+        .category-tag { font-family: var(--font-mono); color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; }
+        .image-count { font-family: var(--font-mono); color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px; }
+        
+        .case-title { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; text-transform: uppercase; letter-spacing: -3px; line-height: 0.9; margin-bottom: 2rem; }
+        .case-description { max-width: 750px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 4rem; }
+
+        /* --- PROJECT DETAILS GRID --- */
+        .project-details { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding-top: 40px; border-top: 1px solid var(--border); }
+        .detail-item h4 { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 10px; }
+        .detail-item p { font-size: 0.9rem; color: white; white-space: pre-line; }
+
+        /* --- MASONRY GALLERY --- */
+        .gallery-wrap { padding: 80px 5%; }
+        .masonry-grid { column-count: 3; column-gap: 20px; }
+        
+        .masonry-item { 
+            position: relative; 
+            break-inside: avoid; 
+            margin-bottom: 20px; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            border: 1px solid var(--border); 
+            background: var(--surface);
+            transition: var(--transition);
+        }
+
+        .masonry-item img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            transition: 1s var(--transition);
+        }
+
+        .img-meta {
+            position: absolute; bottom: 15px; right: 15px;
+            font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.7);
+            opacity: 0; transition: 0.3s;
+            background: rgba(0,0,0,0.5); padding: 4px 8px; border-radius: 4px;
+        }
+
+        .masonry-item:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .masonry-item:hover img { transform: scale(1.04); }
+        .masonry-item:hover .img-meta { opacity: 1; }
+
+        /* --- LIGHTBOX --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98);
+            display: none; justify-content: center; align-items: center; z-index: 100000; backdrop-filter: blur(20px);
+        }
+        #lightbox img { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: 0 0 60px rgba(0,0,0,0.8); }
+        .close-lb { position: absolute; top: 40px; right: 40px; font-family: var(--font-mono); color: white; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1100px) { .masonry-grid { column-count: 2; } .project-details { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+        @media (max-width: 768px) { .masonry-grid { column-count: 1; } .project-details { grid-template-columns: 1fr; } .case-header { padding: 140px 5% 40px; } }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
+        <a href="photography.html" class="back-btn">← Back to Archive</a>
+    </nav>
+
+    <header class="case-header">
+        <div class="header-top">
+            <span class="category-tag">Wedding Photography // April 28, 2026</span>
+            <span class="image-count">Archive — 11 Images</span>
+        </div>
+        <h1 class="case-title">Getting<br>Married</h1>
+        
+        <p class="case-description">
+            A visual documentation of intimacy, celebration, and the start of a new chapter. Captured on April 28, 2026, this collection focuses on the raw, cinematic moments—from the quiet anticipation of the morning to the vibrant energy of the reception. Every frame was selected to preserve the authentic narrative of the day through a natural and editorial lens.
+        </p>
+
+        <div class="project-details">
+            <div class="detail-item">
+                <h4>Category</h4>
+                <p>Wedding Photography</p>
+            </div>
+            <div class="detail-item">
+                <h4>Location</h4>
+                <p>San Antonio, Texas</p>
+            </div>
+            <div class="detail-item">
+                <h4>Deliverables</h4>
+                <p>Full Day Coverage&#10;Cinematic Post-Processing&#10;Digital Archive</p>
+            </div>
+            <div class="detail-item">
+                <h4>Status</h4>
+                <p>Collection Published&#10;Season: Spring 2026</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="gallery-wrap">
+        <div class="masonry-grid">
+            <!-- Hero Image -->
+            <div class="masonry-item"><img src="https://i.ibb.co/yBYxqh2J/IMG-3350.jpg" alt="Wedding Hero"><div class="img-meta">01 / 11</div></div>
+            
+            <!-- Highlight Image -->
+            <div class="masonry-item"><img src="https://i.ibb.co/YBL2c9yX/IMG-3352.jpg" alt="Wedding Highlight"><div class="img-meta">02 / 11</div></div>
+            
+            <!-- Collection -->
+            <div class="masonry-item"><img src="https://i.ibb.co/B2shXtPy/IMG-3421.jpg" alt="Wedding Photography"><div class="img-meta">03 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/ksmZDYp4/IMG-3417.jpg" alt="Wedding Photography"><div class="img-meta">04 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/1GqTZj7p/IMG-3415.jpg" alt="Wedding Photography"><div class="img-meta">05 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/gLWpRGHT/IMG-3403.jpg" alt="Wedding Photography"><div class="img-meta">06 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/v6RVKskQ/IMG-3359.jpg" alt="Wedding Photography"><div class="img-meta">07 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/JFnDfPsk/IMG-3360.jpg" alt="Wedding Photography"><div class="img-meta">08 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/Ps1pgrWH/IMG-3420.jpg" alt="Wedding Photography"><div class="img-meta">09 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/VYZychmN/IMG-3422.jpg" alt="Wedding Photography"><div class="img-meta">10 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/J403pmW/IMG-3426.jpg" alt="Wedding Photography"><div class="img-meta">11 / 11</div></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/dJJkVqnV/IMG-3402.jpg" alt="Wedding Photography"><div class="img-meta">11 / 11</div></div>
+        </div>
+    </main>
+
+    <div id="lightbox">
+        <span class="close-lb">ESC // CLOSE</span>
+        <img src="" id="lb-img">
+    </div>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursor.style.transform = `translate(${x}px, ${y}px)`;
+            follower.style.transform = `translate(${x - 20}px, ${y - 20}px)`;
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        
+        document.querySelectorAll('.masonry-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                lbImg.src = img.src;
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "Escape") {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
