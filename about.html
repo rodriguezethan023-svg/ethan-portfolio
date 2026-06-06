@@ -41,12 +41,12 @@
 
         /* --- HEADER --- */
         .about-header { padding: 180px 10% 80px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .about-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; text-transform: uppercase; line-height: 1; letter-spacing: -2px; margin-bottom: 1.5rem; }
+        .about-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 1; letter-spacing: -2px; margin-bottom: 1.5rem; }
         .about-subtitle { font-family: var(--font-mono); color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 1rem; }
 
         /* --- CONTENT GRID --- */
         .about-content { padding: 100px 10%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem; }
-        .story p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; font-weight: 300; }
+        .story p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; font-weight: 300; max-width: 850px; }
 
         /* --- SIDEBAR --- */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; position: sticky; top: 120px; }
@@ -75,7 +75,7 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-    @media (max-width: 767px) {
+  @media (max-width: 767px) {
 
     .about-header {
         padding: 140px 8% 60px;
@@ -83,7 +83,6 @@
 
     .about-title {
         font-size: 2.8rem;
-        line-height: 1;
     }
 
     .about-subtitle {
@@ -112,7 +111,6 @@
         gap: 12px;
         font-size: 0.65rem;
     }
-
 }
     </style>
     <link rel="stylesheet" href="nav.css">
@@ -125,16 +123,21 @@
     <div id="cursor-follower"></div>
 
 
-    <header class="about-header">
-        <h1 class="about-title">FROM EL PASO TO SAN ANTONIO.<br>CREATING WITH PURPOSE.</h1>
-        <span class="about-subtitle">Graphic Designer • Photographer • Data Visualization</span>
-    </header>
+<header class="about-header">
+    <h1 class="about-title">
+        THE STORY<br>BEHIND MY WORK.
+    </h1>
+
+    <span class="about-subtitle">
+        Graphic Designer • Developer • Visual Storyteller
+    </span>
+</header>
 
     <main class="about-content">
         <!-- REVISED BIOGRAPHY SECTION -->
         <article class="story">
             <p>
-                I'm Ethan, a graphic designer, photographer, and visual storyteller passionate about creating work that connects with people. Born and raised in El Paso, Texas, I eventually made my way to San Antonio, where I now live, create, and continue growing both personally and professionally.
+                I'm Ethan, a graphic designer, developer, and visual storyteller passionate about creating work that connects with people. Born and raised in El Paso, Texas, I eventually made my way to San Antonio, where I now live, create, and continue growing both personally and professionally.
             </p>
             <p>
                 My journey into design wasn't a straight line. Growing up, I always had a passion for art, creativity, and visual expression, but I never saw it as a realistic career path. When I started college, I was pursuing nursing and spent nearly three years working toward that goal. Along the way, I realized something wasn't clicking. After taking anatomy multiple times and struggling to find the same excitement that others seemed to have for the field, I began questioning whether I was truly on the right path.
