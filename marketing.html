@@ -183,33 +183,83 @@
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--accent-glow); }
 
         /* --- FOOTER --- */
-        .footer {
-            padding: 3rem 10%; border-top: 1px solid var(--border);
-            display: flex; justify-content: space-between; font-family: var(--font-mono);
-            font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;
-        }
+       .footer {
+        padding: 3rem 5%;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
 
         @media (max-width: 1024px) {
             .proj-header, .campaign-gallery, .tools-grid { grid-template-columns: 1fr; }
             .hero, .case-study { padding: 80px 5%; }
             .proj-title { font-size: 3rem; }
         }
-        @media (max-width: 768px) {
+       @media (max-width: 767px) {
+
     .hero {
-        padding: 0 5%;
-        height: 50vh;
+        padding: 140px 8% 80px;
+        height: auto;
     }
 
     .hero-title {
-        font-size: clamp(2rem, 10vw, 4rem);
+        font-size: 3.5rem;
         line-height: 0.95;
         letter-spacing: -2px;
-        word-break: break-word;
     }
 
     .hero-tagline {
         font-size: 0.8rem;
         letter-spacing: 3px;
+    }
+
+    .case-study,
+    .tools-section,
+    .cta {
+        padding: 60px 8%;
+    }
+
+    .proj-header {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .campaign-gallery {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .skills-list {
+        grid-template-columns: 1fr;
+    }
+
+    .proj-title {
+        font-size: 2.75rem;
+        line-height: 0.95;
+    }
+
+    .proj-desc,
+    .content-block p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .proj-brief-box {
+        padding: 30px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.65rem;
     }
 }
     </style>
@@ -329,9 +379,10 @@
     </section>
 
     <footer class="footer">
-        <div>© 2026 Archive // Ethan Rodriguez</div>
-        <div>San Antonio, Texas // Available Worldwide</div>
-    </footer>
+    <div>© 2026 Ethan Rodriguez</div>
+    <div>Graphic Designer • Developer • Visual Storyteller</div>
+    <div>San Antonio, TX</div>
+</footer>
 
     <script>
         const cursor = document.getElementById('cursor');
