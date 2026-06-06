@@ -95,6 +95,30 @@
         @media (max-width: 1024px) { 
             .album-card { grid-template-columns: 1fr; gap: 2rem; } 
         }
+
+        /* --- FOOTER --- */
+.footer {
+    padding: 3rem 5%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+@media (max-width: 767px) {
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.65rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -150,29 +174,37 @@
         </div>
     </section>
 
-    <script>
-        // Custom Cursor Logic
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursor-follower');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+<footer class="footer">
+    <div>© 2026 Ethan Rodriguez</div>
+    <div>Graphic Designer • Developer • Visual Storyteller</div>
+    <div>San Antonio, TX</div>
+</footer>
+
+<script>
+    // Custom Cursor Logic
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+    });
+
+    // Scroll Reveal Logic
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
         });
+    }, { threshold: 0.1 });
 
-        // Scroll Reveal Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, { threshold: 0.1 });
+    document.querySelectorAll('.album-card').forEach(card =>
+        observer.observe(card)
+    );
+</script>
 
-        document.querySelectorAll('.album-card').forEach(card => observer.observe(card));
-    </script>
-    
-    <!-- Shared Navigation Scripts -->
-    <script src="nav.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>
