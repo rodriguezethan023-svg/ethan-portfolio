@@ -194,6 +194,24 @@
             .hero, .case-study { padding: 80px 5%; }
             .proj-title { font-size: 3rem; }
         }
+        @media (max-width: 768px) {
+    .hero {
+        padding: 0 5%;
+        height: 50vh;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 4rem);
+        line-height: 0.95;
+        letter-spacing: -2px;
+        word-break: break-word;
+    }
+
+    .hero-tagline {
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+    }
+}
     </style>
     <link rel="stylesheet" href="nav.css">
 
