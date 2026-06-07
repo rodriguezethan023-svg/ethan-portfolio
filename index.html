@@ -123,9 +123,11 @@
         .hub-card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08); padding: 5rem 3rem; text-decoration: none; color: white; border-radius: 24px; position: relative; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: center; align-items: center; height: 480px; text-align: center; }
         .cat-name { font-size: 4.5rem; font-weight: 900; text-transform: uppercase; line-height: 0.85; z-index: 2; color: rgba(255,255,255,0.15); -webkit-text-stroke: 1.5px rgba(255,255,255,0.6); transition: var(--transition); letter-spacing: -2px; }
         .hub-card:hover .cat-name { color: #fff; -webkit-text-stroke: 1.5px #fff; transform: scale(1.05); }
-        .card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.05; filter: grayscale(1); transition: 1s var(--transition); z-index: 1; }
-        .hub-card:hover .card-bg { opacity: 0.25; filter: grayscale(0); }
+        .card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.12; filter: grayscale(1)  blur(2px); transition: 1s var(--transition); z-index: 1; }
+        .hub-card:hover .card-bg { opacity: 0.35; filter: grayscale(0) blur(1px); }
         .cat-desc { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-top: 2rem; letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
+
+        
 
         .footer {
             padding: 3rem 5%;
@@ -252,23 +254,23 @@
         </div>
         <div class="hub-grid">
             <a href="brand-design.html" class="hub-card">
-                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800');"></div>
-                <h3 class="cat-name">Brand<br>Identity</h3>
+                <div class="card-bg" style="background-image: url('https://i.ibb.co/xqtvNNHX/Chat-GPT-Image-Jun-7-2026-12-09-40-AM.png');"></div>
+               <h3 class="cat-name">Branding</h3>
                 <p class="cat-desc">Visual Systems // Logos</p>
             </a>
             <a href="dataviz.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bbbda50a5f4a?auto=format&fit=crop&q=80&w=800');"></div>
-                <h3 class="cat-name">Data<br>Viz</h3>
+               <h3 class="cat-name">Data </h3>
                 <p class="cat-desc">Analytics // Dashboards</p>
             </a>
             <a href="marketing.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=800');"></div>
-                <h3 class="cat-name">Market<br>Comms</h3>
+                <h3 class="cat-name">Marketing</h3>
                 <p class="cat-desc">Campaigns // Strategy</p>
             </a>
             <a href="photography.html" class="hub-card">
                 <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800');"></div>
-                <h3 class="cat-name">Visual<br>Art</h3>
+                <h3 class="cat-name">Photography</h3>
                 <p class="cat-desc">Portraiture // Narrative</p>
             </a>
         </div>
