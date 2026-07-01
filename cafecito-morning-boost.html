@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Cafecito // Ethan Rodriguez Photography</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --accent: #007AFF; 
+            --accent-glow: rgba(0, 122, 255, 0.3);
+            --text-main: #FFFFFF;
+            --text-muted: #888888;
+            --font-head: 'Outfit', sans-serif;
+            --font-mono: 'Space Grotesk', sans-serif;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-head); overflow-x: hidden; line-height: 1.4; }
+
+        /* --- GALLERY NAVIGATION BAR --- */
+        .gallery-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 2000;
+        }
+
+        .gallery-nav .nav-logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .gallery-nav .nav-logo span {
+            color: var(--accent);
+        }
+
+        .gallery-nav .back-to-archive {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .gallery-nav .back-to-archive:hover {
+            color: var(--accent);
+        }
+
+        /* --- SYSTEM OVERLAYS --- */
+        #cursor { position: fixed; width: 8px; height: 8px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: transform 0.1s; }
+        #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.2s ease-out; }
+        .ambient-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, var(--accent-glow), transparent 70%); pointer-events: none; z-index: -1; }
+
+        /* --- CASE STUDY HEADER --- */
+        .case-header { 
+            padding: 180px 10% 60px; /* Increased top padding for fixed nav */
+            border-bottom: 1px solid var(--border); 
+        }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+        .category-tag { font-family: var(--font-mono); color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; }
+        .image-count { font-family: var(--font-mono); color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px; }
+        .case-title { font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 900; text-transform: uppercase; letter-spacing: -2px; line-height: 0.95; margin-bottom: 2rem; }
+        .case-description { max-width: 750px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 4rem; }
+
+        .project-details { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding-top: 40px; border-top: 1px solid var(--border); }
+        .detail-item h4 { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 10px; }
+        .detail-item p { font-size: 0.9rem; color: white; }
+
+        /* --- GALLERY GRID --- */
+        .gallery-wrap { padding: 80px 5%; }
+        .masonry-grid { column-count: 3; column-gap: 20px; }
+        .masonry-item { break-inside: avoid; margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: var(--transition); background: var(--surface); position: relative; }
+        
+        .masonry-item img { 
+            width: 100%; height: auto; display: block; 
+            transition: 0.5s var(--transition);
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .masonry-item:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); display: none; justify-content: center; align-items: center; z-index: 100000; backdrop-filter: blur(20px); }
+        #lightbox img { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: 0 0 60px rgba(0,0,0,0.8); }
+        .close-lb { position: absolute; top: 40px; right: 40px; font-family: var(--font-mono); color: white; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        @media (max-width: 1100px) { .masonry-grid { column-count: 2; } .project-details { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 700px) { .masonry-grid { column-count: 1; } .project-details { grid-template-columns: 1fr; } .case-header { padding: 140px 5% 40px; } }
+    </style>
+</head>
+<body>
+
+    <!-- STATIC GALLERY NAV -->
+    <nav class="gallery-nav">
+        <a href="index.html" class="nav-logo">E.RODRIGUEZ<span>.</span></a>
+        <a href="photography.html" class="back-to-archive">← BACK TO ARCHIVE</a>
+    </nav>
+
+    <div class="ambient-glow"></div>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <header class="case-header">
+        <div class="header-top">
+            <span class="category-tag">Event Photography // Cafecito Morning Boost</span>
+            <span class="image-count">Archive — 13 Images</span>
+        </div>
+        <h1 class="case-title">NextGen Cafecito<br>Morning Boost</h1>
+        <p class="case-description">
+            Captured authentic moments during the NextGen Cafecito Morning Boost event, documenting employee networking, engagement, and community culture through high-resolution candid event photography.
+        </p>
+
+        <div class="project-details">
+            <div class="detail-item"><h4>Category</h4><p>Event Documentation</p></div>
+            <div class="detail-item"><h4>Client</h4><p>NextGen / Internal</p></div>
+            <div class="detail-item"><h4>Deliverables</h4><p>Social Assets // Candid Coverage</p></div>
+            <div class="detail-item"><h4>Archive Data</h4><p>13 Images // June 2026</p></div>
+        </div>
+    </header>
+
+    <main class="gallery-wrap">
+        <div class="masonry-grid">
+            <div class="masonry-item"><img src="https://i.ibb.co/QF5c3jpG/6-A314-C13-1819-43-DB-8240-5-B7-EBED96504.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/jPrhNTTP/16-EA9710-7901-4-CDE-A44-E-077961-C3-D33-A.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/vxgzWNTV/17-C8-C976-5-A5-C-4-C61-A996-894-AE05-E01-BC.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/Q5VgR92/34-C6-A871-09-C3-40-C4-988-C-5046009834-D5.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/rGvhmR4L/46-F9661-C-1-DEC-42-A9-95-F8-0-C149-C61-ABE7.png"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/SDV0RmPB/84-A3-B4-D5-2-EBA-4-F15-A0-EE-546628-E11579.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/yFXhdSBH/174-C55-C9-C450-447-C-864-A-259510-D8-A2-E9.png"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/4ZTHNsb4/6460-C437-DF07-4-A16-B033-0868-F9-B767-B7.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/HLGbDfRn/BD7-E9908-3546-405-B-BF7-F-40-E01-E688-AD6.png"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/Vpk72RZw/C2595-E0-C-A024-46-E8-B135-C9-E4-E48715-CD.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/G41pzRwQ/C6134-E78-14-E6-4-ED3-A3-DC-B44-D77-C2-EC4-B.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/MktFJhtP/E24-E207-C-BBC9-4-D5-B-B3-BF-1-AC524268-CE5.jpg"></div>
+            <div class="masonry-item"><img src="https://i.ibb.co/Y4RnwwdS/E748-E3-C1-114-E-4-F1-E-AD65-0288-A7-D83116.jpg"></div>
+        </div>
+    </main>
+
+    <div id="lightbox">
+        <span class="close-lb">ESC // CLOSE</span>
+        <img id="lb-img" src="">
+    </div>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+        });
+
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        document.querySelectorAll('.masonry-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                lbImg.src = img.src;
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        lb.addEventListener('click', () => { lb.style.display = 'none'; document.body.style.overflow = 'auto'; });
+        document.addEventListener('keydown', (e) => { if(e.key === "Escape") { lb.style.display = 'none'; document.body.style.overflow = 'auto'; } });
+    </script>
+</body>
+</html>
